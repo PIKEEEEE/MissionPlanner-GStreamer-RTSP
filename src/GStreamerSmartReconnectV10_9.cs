@@ -1984,3 +1984,184 @@ namespace GStreamerV109
                     psi.EnvironmentVariables["NO_PROXY"] = "*";
                     psi.EnvironmentVariables["no_proxy"] = "*";
                 }
+
+                else
+                {
+                    RemoveEnv(psi, "GIO_USE_PROXY_RESOLVER");
+                    RemoveEnv(psi, "NO_PROXY");
+                    RemoveEnv(psi, "no_proxy");
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        void RemoveEnv(
+            ProcessStartInfo psi,
+            string key)
+        {
+            try
+            {
+                if (psi.EnvironmentVariables.ContainsKey(key))
+                    psi.EnvironmentVariables.Remove(key);
+            }
+            catch { }
+        }
+
+        // ============================================================
+        // gst-launch location
+        // ============================================================
+
+        string FindGst()
+        {
+            // 사용자가 선택한 경로가 있으면 무조건 그 버전을 우선 사용.
+            if (!String.IsNullOrWhiteSpace(gstLaunchPath))
+            {
+                if (File.Exists(gstLaunchPath))
+                    return gstLaunchPath;
+
+                return null;
+            }
+
+            return AutoFindGst();
+        }
+
+        string AutoFindGst()
+        {
+            string lib = GStreamer.LookForGstreamer();
+
+            if (!String.IsNullOrWhiteSpace(lib))
+            {
+                string dir = Path.GetDirectoryName(lib);
+
+                if (!String.IsNullOrWhiteSpace(dir))
+                {
+                    string a =
+                        Path.Combine(dir, "gst-launch-1.0.exe");
+
+                    if (File.Exists(a))
+                        return a;
+
+                    DirectoryInfo di = new DirectoryInfo(dir);
+
+                    if (di.Parent != null)
+                    {
+                        string b = Path.Combine(
+                            di.Parent.FullName,
+                            "bin",
+                            "gst-launch-1.0.exe");
+
+                        if (File.Exists(b))
+                            return b;
+                    }
+                }
+            }
+
+            // 일반적인 공식 GStreamer 설치 위치도 추가 검색.
+            string[] roots = new string[]
+            {
+                @"C:\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe",
+                @"C:\gstreamer\1.0\msvc_x86_64\bin\gst-launch-1.0.exe",
+                @"C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe",
+                @"C:\Program Files\gstreamer\1.0\msvc_x86_64\bin\gst-launch-1.0.exe",
+                @"C:\Program Files (x86)\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe",
+                @"C:\Program Files (x86)\gstreamer\1.0\msvc_x86_64\bin\gst-launch-1.0.exe"
+            };
+
+            foreach (string path in roots)
+            {
+                try
+                {
+                    if (File.Exists(path))
+                        return path;
+                }
+                catch { }
+            }
+
+            return null;
+        }
+
+        // ============================================================
+        // External video window embedding
+        // ============================================================
+
+        void Embed(IntPtr w)
+        {
+            videoWnd = w;
+
+            long st =
+                GetWindowLongPtr(w, GWL_STYLE).ToInt64();
+
+            st &=
+                ~(WS_CAPTION |
+                  WS_THICKFRAME |
+                  WS_MINIMIZEBOX |
+                  WS_MAXIMIZEBOX |
+                  WS_SYSMENU);
+
+            st |= WS_CHILD | WS_VISIBLE;
+
+            SetWindowLongPtr(
+                w,
+                GWL_STYLE,
+                new IntPtr(st));
+
+            SetParent(w, panel.Handle);
+            ResizeVideo();
+            ShowWindow(w, 5);
+        }
+
+        void ResizeVideo()
+        {
+            if (videoWnd == IntPtr.Zero ||
+                !IsWindow(videoWnd))
+                return;
+
+            MoveWindow(
+                videoWnd,
+                0,
+                0,
+                panel.ClientSize.Width,
+                panel.ClientSize.Height,
+                true);
+        }
+
+        IntPtr FindWindow(int pid)
+        {
+            IntPtr r = IntPtr.Zero;
+
+            EnumWindows(
+                delegate(IntPtr w, IntPtr l)
+                {
+                    uint p;
+                    GetWindowThreadProcessId(w, out p);
+
+                    if (p == pid && IsWindowVisible(w))
+                    {
+                        r = w;
+                        return false;
+                    }
+
+                    return true;
+                },
+                IntPtr.Zero);
+
+            return r;
+        }
+
+        const int GWL_STYLE = -16;
+
+        const long WS_CAPTION = 0x00C00000L;
+        const long WS_THICKFRAME = 0x00040000L;
+        const long WS_MINIMIZEBOX = 0x00020000L;
+        const long WS_MAXIMIZEBOX = 0x00010000L;
+        const long WS_SYSMENU = 0x00080000L;
+        const long WS_CHILD = 0x40000000L;
+        const long WS_VISIBLE = 0x10000000L;
+
+        delegate bool EnumWindowsProc(IntPtr h, IntPtr l);
+
+        [DllImport("user32.dll")]
+        static extern bool EnumWindows(
+            EnumWindowsProc f,
