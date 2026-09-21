@@ -358,3 +358,184 @@ namespace GStreamerV109
             cRtcp.Left = cx;
             cRtcp.Top = y - 2;
             cRtcp.Width = 260;
+
+            cRtcp.Text = "do-rtcp=true";
+            cRtcp.Checked = doRtcp;
+            AddLabel("RTCP", lx, y);
+            cfg.Controls.Add(cRtcp);
+            y += dy;
+
+            CheckBox cKeepAlive = new CheckBox();
+            cKeepAlive.Left = cx;
+            cKeepAlive.Top = y - 2;
+            cKeepAlive.Width = 300;
+            cKeepAlive.Text = "do-rtsp-keep-alive=true";
+            cKeepAlive.Checked = rtspKeepAlive;
+            AddLabel("RTSP Keep Alive", lx, y);
+            cfg.Controls.Add(cKeepAlive);
+            y += dy;
+
+            CheckBox cProxyBypass = new CheckBox();
+            cProxyBypass.Left = cx;
+            cProxyBypass.Top = y - 2;
+            cProxyBypass.Width = 360;
+            cProxyBypass.Text = "GIO system proxy 우회 (권장)";
+            cProxyBypass.Checked = proxyBypass;
+            AddLabel("Proxy bypass", lx, y);
+            cfg.Controls.Add(cProxyBypass);
+            y += dy;
+
+            Label detectedLabel = new Label();
+            detectedLabel.Left = cx;
+            detectedLabel.Top = y;
+            detectedLabel.AutoSize = true;
+            detectedLabel.Text = DetectedStreamText();
+            AddLabel("감지된 RTP 스트림", lx, y);
+            cfg.Controls.Add(detectedLabel);
+            y += dy;
+
+            ComboBox cLossMode = new ComboBox();
+            cLossMode.Left = cx;
+            cLossMode.Top = y - 3;
+            cLossMode.Width = 420;
+            cLossMode.DropDownStyle = ComboBoxStyle.DropDownList;
+            cLossMode.Items.Add("0 - 호환성 우선 (decodebin3, 권장)");
+            cLossMode.Items.Add("1 - 안전 저지연 (decodebin3 + drop-on-latency)");
+            cLossMode.SelectedIndex = Math.Max(0, Math.Min(1, lossMode));
+            AddLabel("손실 대응 모드", lx, y);
+            cfg.Controls.Add(cLossMode);
+            y += dy;
+
+            Label safeNote = new Label();
+            safeNote.Left = cx;
+            safeNote.Top = y - 5;
+            safeNote.Width = 500;
+            safeNote.Height = 32;
+            safeNote.Text = "V10.8은 rtph264depay를 강제로 넣지 않습니다. 코덱 선택은 decodebin3에 맡깁니다.";
+            cfg.Controls.Add(safeNote);
+            y += 34;
+
+            CheckBox cAuto = new CheckBox();
+            cAuto.Left = cx;
+            cAuto.Top = y - 2;
+            cAuto.Width = 100;
+            cAuto.Text = "사용";
+            cAuto.Checked = autoRetry;
+            AddLabel("Auto reconnect", lx, y);
+            cfg.Controls.Add(cAuto);
+            y += dy;
+
+            NumericUpDown nRetry = Num(cx, y - 3, 1, 30, retryDelay);
+            AddLabel("Reconnect base delay (sec)", lx, y);
+            cfg.Controls.Add(nRetry);
+            y += dy;
+
+            NumericUpDown nConnectWatchdog =
+                Num(cx, y - 3, 3, 60, connectWatchdogSec);
+            AddLabel("Connect watchdog (sec)", lx, y);
+            cfg.Controls.Add(nConnectWatchdog);
+            y += 40;
+
+            Label previewLabel = new Label();
+            previewLabel.Text = "현재 생성될 Pipeline";
+            previewLabel.Left = lx;
+            previewLabel.Top = y;
+            previewLabel.AutoSize = true;
+            cfg.Controls.Add(previewLabel);
+
+            TextBox preview = new TextBox();
+            preview.Left = lx;
+            preview.Top = y + 22;
+            preview.Width = 712;
+            preview.Height = 105;
+            preview.Multiline = true;
+            preview.ReadOnly = true;
+            preview.ScrollBars = ScrollBars.Vertical;
+            cfg.Controls.Add(preview);
+
+            Button apply = new Button();
+            apply.Text = "적용";
+            apply.Left = 535;
+            apply.Top = 878;
+            apply.Width = 90;
+            apply.Height = 30;
+            cfg.Controls.Add(apply);
+
+            Button close = new Button();
+            close.Text = "닫기";
+            close.Left = 635;
+            close.Top = 878;
+            close.Width = 90;
+            close.Height = 30;
+            cfg.Controls.Add(close);
+
+            Action updateUi = delegate
+            {
+                string selectedProto =
+                    Convert.ToString(cProto.SelectedItem);
+
+                bool isTcp =
+                    String.Equals(
+                        selectedProto,
+                        "TCP",
+                        StringComparison.OrdinalIgnoreCase);
+
+                bool isAuto =
+                    String.Equals(
+                        selectedProto,
+                        "AUTO",
+                        StringComparison.OrdinalIgnoreCase);
+
+                nTcp.Enabled = isTcp || isAuto;
+                nUdpTimeout.Enabled = !isTcp;
+                cRetrans.Enabled = !isTcp;
+
+                detectedLabel.Text = DetectedStreamText();
+
+                bool sameAsProbed =
+                    String.Equals(
+                        tGst.Text.Trim(),
+                        lastProbedGstPath,
+                        StringComparison.OrdinalIgnoreCase);
+
+                bool w = sameAsProbed && waitKeyframeSupported;
+                bool r = sameAsProbed && requestKeyframeSupported;
+
+                preview.Text = BuildPipelineFromValues(
+                    tUrl.Text.Trim(),
+                    Convert.ToString(cProto.SelectedItem),
+                    (int)nLat.Value,
+                    (int)nBuf.Value,
+                    cLeaky.SelectedIndex,
+                    (int)nTcp.Value,
+                    (int)nUdpTimeout.Value,
+                    cRetrans.Checked,
+                    cRtcp.Checked,
+                    cKeepAlive.Checked,
+                    cLossMode.SelectedIndex);
+            };
+
+            tUrl.TextChanged += delegate { updateUi(); };
+            tGst.TextChanged += delegate
+            {
+                if (!String.Equals(
+                    tGst.Text.Trim(),
+                    lastProbedGstPath,
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    versionLabel.Text = "버전: 검사 필요";
+                    gstCompatLabel.Text =
+                        "rtph264depay: 새 경로는 '버전/기능 검사'를 눌러 확인";
+                }
+
+                updateUi();
+            };
+
+            cProto.SelectedIndexChanged += delegate { updateUi(); };
+            nLat.ValueChanged += delegate { updateUi(); };
+            nBuf.ValueChanged += delegate { updateUi(); };
+            cLeaky.SelectedIndexChanged += delegate { updateUi(); };
+            nTcp.ValueChanged += delegate { updateUi(); };
+            nUdpTimeout.ValueChanged += delegate { updateUi(); };
+            cRetrans.CheckedChanged += delegate { updateUi(); };
+            cRtcp.CheckedChanged += delegate { updateUi(); };
