@@ -167,12 +167,14 @@ PLAY 성공 시 reset
 - `docs/DEVELOPMENT_HISTORY.md` — 버전별 개발 이력
 - `docs/ARCHITECTURE.md` — 최종 구조와 pipeline
 - `docs/TROUBLESHOOTING.md` — 오류별 진단
-- `docs/reference/` — 개발 정리 Word/PDF
 - `docs/logs/` — 개발 중 수집한 대표 로그
+- `docs/HISTORICAL_ARTIFACTS.md` — 개발 중 생성된 버전/파일 인덱스
 
-## 과거 버전
+## 배포물 / 과거 버전
 
-- `releases/` — 대화 중 만들어진 배포 ZIP 모음
+- `releases/MissionPlanner_GStreamer_SmartReconnect_V10_9.zip` — 현재 권장 배포 ZIP
+- `docs/HISTORICAL_ARTIFACTS.md` — V2~V10.9 개발 산출물 목록
+- 변경 배경은 `CHANGELOG.md`와 `docs/DEVELOPMENT_HISTORY.md`에 정리
 
 ## 라이선스
 
