@@ -178,3 +178,183 @@ namespace GStreamerV109
 
             active = true;
             manualStop = false;
+
+            host.Show();
+            host.BringToFront();
+
+            if (!Running())
+            {
+                SetStatus("RTSP 연결 중...");
+                StartGst();
+            }
+        }
+
+        void StopVideo()
+        {
+            active = false;
+            manualStop = true;
+            KillGst();
+            manualStop = false;
+            SetStatus("영상 연결 종료됨");
+        }
+
+        // ============================================================
+        // Settings UI
+        // ============================================================
+
+        void ShowCfg()
+        {
+            if (cfg != null && !cfg.IsDisposed)
+            {
+                cfg.Show();
+                cfg.BringToFront();
+                return;
+            }
+
+            cfg = new Form();
+            cfg.Text = "GStreamer V10.9 실시간 설정";
+            cfg.StartPosition = FormStartPosition.CenterScreen;
+            cfg.FormBorderStyle = FormBorderStyle.FixedDialog;
+            cfg.MaximizeBox = false;
+            cfg.MinimizeBox = false;
+            cfg.ClientSize = new System.Drawing.Size(760, 925);
+
+            int lx = 18;
+            int cx = 190;
+            int y = 18;
+            int dy = 36;
+
+            TextBox tGst = new TextBox();
+            tGst.Left = cx;
+            tGst.Top = y - 3;
+            tGst.Width = 420;
+            tGst.Text = gstLaunchPath;
+            AddLabel("gst-launch-1.0.exe", lx, y);
+            cfg.Controls.Add(tGst);
+
+            Button browseGst = new Button();
+            browseGst.Text = "찾아보기";
+            browseGst.Left = 620;
+            browseGst.Top = y - 5;
+            browseGst.Width = 110;
+            browseGst.Height = 27;
+            cfg.Controls.Add(browseGst);
+            y += dy;
+
+            Button autoFind = new Button();
+            autoFind.Text = "자동 검색";
+            autoFind.Left = cx;
+            autoFind.Top = y - 5;
+            autoFind.Width = 100;
+            autoFind.Height = 27;
+            cfg.Controls.Add(autoFind);
+
+            Button inspectGst = new Button();
+            inspectGst.Text = "버전/기능 검사";
+            inspectGst.Left = cx + 110;
+            inspectGst.Top = y - 5;
+            inspectGst.Width = 120;
+            inspectGst.Height = 27;
+            cfg.Controls.Add(inspectGst);
+
+            Button testElements = new Button();
+            testElements.Text = "영상 요소 검사";
+            testElements.Left = cx + 240;
+            testElements.Top = y - 5;
+            testElements.Width = 115;
+            testElements.Height = 27;
+            cfg.Controls.Add(testElements);
+
+            Label versionLabel = new Label();
+            versionLabel.Left = cx + 245;
+            versionLabel.Top = y;
+            versionLabel.AutoSize = true;
+            versionLabel.Text = "버전: " + gstVersionText;
+            cfg.Controls.Add(versionLabel);
+            y += 30;
+
+            Label gstCompatLabel = new Label();
+            gstCompatLabel.Left = cx;
+            gstCompatLabel.Top = y;
+            gstCompatLabel.AutoSize = true;
+            gstCompatLabel.Text =
+                "rtph264depay: wait-for-keyframe=" +
+                (waitKeyframeSupported ? "지원" : "미확인/자동제외") +
+                " / request-keyframe=" +
+                (requestKeyframeSupported ? "지원" : "미확인/자동제외");
+            cfg.Controls.Add(gstCompatLabel);
+            y += 34;
+
+            TextBox tUrl = new TextBox();
+            tUrl.Left = cx;
+            tUrl.Top = y - 3;
+            tUrl.Width = 390;
+            tUrl.Text = url;
+            AddLabel("RTSP 주소", lx, y);
+            cfg.Controls.Add(tUrl);
+            y += dy;
+
+            ComboBox cProto = new ComboBox();
+            cProto.Left = cx;
+            cProto.Top = y - 3;
+            cProto.Width = 110;
+            cProto.DropDownStyle = ComboBoxStyle.DropDownList;
+            cProto.Items.Add("AUTO");
+            cProto.Items.Add("UDP");
+            cProto.Items.Add("TCP");
+            cProto.SelectedItem = proto;
+
+            if (cProto.SelectedIndex < 0)
+                cProto.SelectedItem = "UDP";
+            AddLabel("Protocol", lx, y);
+            cfg.Controls.Add(cProto);
+            y += dy;
+
+            NumericUpDown nLat = Num(cx, y - 3, 0, 5000, latency);
+            AddLabel("Latency (ms)", lx, y);
+            cfg.Controls.Add(nLat);
+            y += dy;
+
+            NumericUpDown nBuf = Num(cx, y - 3, 1, 60, buffers);
+            AddLabel("Queue buffers", lx, y);
+            cfg.Controls.Add(nBuf);
+            y += dy;
+
+            ComboBox cLeaky = new ComboBox();
+            cLeaky.Left = cx;
+            cLeaky.Top = y - 3;
+            cLeaky.Width = 280;
+            cLeaky.DropDownStyle = ComboBoxStyle.DropDownList;
+            cLeaky.Items.Add("0 - 버리지 않음");
+            cLeaky.Items.Add("1 - 새 프레임 버림");
+            cLeaky.Items.Add("2 - 오래된 프레임 버림 (저지연)");
+            cLeaky.SelectedIndex = Math.Max(0, Math.Min(2, leaky));
+            AddLabel("Leaky", lx, y);
+            cfg.Controls.Add(cLeaky);
+            y += dy;
+
+            NumericUpDown nTcp = Num(cx, y - 3, 1, 60, tcpTimeout);
+            AddLabel("TCP timeout (sec)", lx, y);
+            cfg.Controls.Add(nTcp);
+            y += dy;
+
+            NumericUpDown nUdpTimeout =
+                Num(cx, y - 3, 1, 60, udpTimeoutSec);
+            AddLabel("UDP no-data timeout (sec)", lx, y);
+            cfg.Controls.Add(nUdpTimeout);
+            y += dy;
+
+            CheckBox cRetrans = new CheckBox();
+            cRetrans.Left = cx;
+            cRetrans.Top = y - 2;
+            cRetrans.Width = 260;
+            cRetrans.Text = "do-retransmission=true";
+            cRetrans.Checked = retrans;
+            AddLabel("UDP retransmission", lx, y);
+            cfg.Controls.Add(cRetrans);
+            y += dy;
+
+            CheckBox cRtcp = new CheckBox();
+            cRtcp.Left = cx;
+            cRtcp.Top = y - 2;
+            cRtcp.Width = 260;
