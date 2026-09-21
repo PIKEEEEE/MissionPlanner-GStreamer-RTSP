@@ -901,3 +901,184 @@ namespace GStreamerV109
                 delay = MaxReconnectBackoffSec;
 
             return (int)delay;
+
+        }
+
+        void ScheduleReconnectAfterDrop(string reason)
+        {
+            if (!active || manualStop || !autoRetry)
+                return;
+
+            // 정상 PLAY까지 갔다가 끊어진 경우에는 카메라/RTSP 서버가
+            // 이전 세션을 정리할 시간을 먼저 줍니다.
+            reconnectFailureCount = 0;
+
+            int delay = BaseRecoveryDelaySec();
+            nextRetry = DateTime.Now.AddSeconds(delay);
+
+            AppendGstLog(
+                "[RECONNECT] Stream dropped. Waiting " +
+                delay +
+                " sec before retry. Reason: " +
+                reason);
+
+            SetStatus(
+                "영상 끊김 - 서버 복구 대기 " +
+                delay +
+                "초");
+        }
+
+        void ScheduleReconnectAfterFailedAttempt(string reason)
+        {
+            if (!active || manualStop || !autoRetry)
+                return;
+
+            int delay = NextFailedConnectDelaySec();
+            nextRetry = DateTime.Now.AddSeconds(delay);
+
+            AppendGstLog(
+                "[RECONNECT] Connection attempt failed. " +
+                "Retry #" +
+                reconnectFailureCount +
+                " in " +
+                delay +
+                " sec. Reason: " +
+                reason);
+
+            SetStatus(
+                "RTSP 서버 대기 - " +
+                delay +
+                "초 후 재시도");
+        }
+
+        // ============================================================
+        // Process / reconnect
+        // ============================================================
+
+        void Tick(object s, EventArgs e)
+        {
+            try
+            {
+                if (Running())
+                {
+                    // V10.8: gst-launch가 Connecting 상태로 살아만 있고
+                    // PLAY까지 못 가면 기존 코드는 영원히 재시작하지 못했습니다.
+                    if (!rtspPlayStarted &&
+                        gstLaunchAt != DateTime.MinValue &&
+                        (DateTime.Now - gstLaunchAt).TotalSeconds >=
+                            connectWatchdogSec)
+                    {
+                        AppendGstLog(
+                            "[WATCHDOG] RTSP connection stalled for " +
+                            connectWatchdogSec +
+                            " sec. Restarting gst-launch.");
+
+                        SetStatus(
+                            "RTSP 연결 정지 감지 - 프로세스 재시작...");
+
+                        bool hadPlay = attemptReachedPlay;
+
+                        KillGst();
+
+                        if (hadPlay)
+                            ScheduleReconnectAfterDrop(
+                                "connect watchdog after PLAY");
+                        else
+                            ScheduleReconnectAfterFailedAttempt(
+                                "connect watchdog");
+
+                        return;
+                    }
+
+                    if (videoWnd == IntPtr.Zero || !IsWindow(videoWnd))
+                    {
+                        IntPtr w = FindWindow(gst.Id);
+
+                        if (w != IntPtr.Zero)
+                        {
+                            Embed(w);
+
+                            if (rtspPlayStarted)
+                                SetStatus("");
+                        }
+                    }
+
+                    return;
+                }
+
+                videoWnd = IntPtr.Zero;
+
+                if (!active || manualStop)
+                    return;
+
+                if (!autoRetry)
+                {
+                    SetStatus("영상 끊김 - 자동 재연결 OFF");
+                    return;
+                }
+
+                if (nextRetry == DateTime.MinValue)
+                {
+                    ScheduleReconnectAfterFailedAttempt(
+                        "no running gst process");
+                    return;
+                }
+
+                if (DateTime.Now >= nextRetry)
+                {
+                    StartGst();
+                }
+            }
+            catch { }
+        }
+
+        void StartGst()
+        {
+            if (!active || Running())
+                return;
+
+            try
+            {
+                string exe = FindGst();
+
+                if (String.IsNullOrWhiteSpace(exe) || !File.Exists(exe))
+                {
+                    active = false;
+                    MessageBox.Show(
+                        "선택한 gst-launch-1.0.exe를 찾지 못했습니다.\r\n\r\n" +
+                        "실시간 설정에서 최신 GStreamer의 gst-launch-1.0.exe 경로를 다시 지정하세요.\r\n" +
+                        "현재 경로: " + gstLaunchPath,
+                        "GStreamer V10.9");
+                    return;
+                }
+
+                ProcessStartInfo p = new ProcessStartInfo();
+                p.FileName = exe;
+                p.Arguments = "-e " + Pipeline();
+                p.UseShellExecute = false;
+                p.CreateNoWindow = true;
+                p.RedirectStandardOutput = true;
+                p.RedirectStandardError = true;
+                p.WorkingDirectory = Path.GetDirectoryName(exe);
+
+                // V10.7: 선택한 bin PATH만 우선하고 plugin system path는 GStreamer 자동 탐색.
+                ConfigureSelectedGstEnvironment(
+                    p,
+                    Path.GetDirectoryName(exe));
+
+                AppendGstLog("=== GStreamer V10.9 launch ===");
+                AppendGstLog("EXE: " + exe);
+                AppendGstLog("PROXY_BYPASS: " + proxyBypass);
+                AppendGstLog("VERBOSE_STATS: OFF");
+                AppendGstLog("PIPELINE: " + Pipeline());
+                AppendGstLog("");
+
+                gst = new Process();
+                gst.StartInfo = p;
+                gst.EnableRaisingEvents = true;
+
+                gst.OutputDataReceived += delegate(object os, DataReceivedEventArgs oe)
+                {
+                    if (oe.Data != null)
+                    {
+                        ObserveRtspLine(oe.Data);
