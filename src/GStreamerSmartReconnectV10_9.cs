@@ -1804,3 +1804,183 @@ namespace GStreamerV109
                     info = "gst-inspect 없음";
                     return;
                 }
+
+                if (!RunProcessWithTimeout(
+                        inspect,
+                        "rtph264depay",
+                        dir,
+                        20000,
+                        out outText,
+                        out errText))
+                {
+                    info = "gst-inspect timeout/실패 (20초)";
+                    return;
+                }
+
+                string all =
+                    (outText + "\n" + errText).ToLowerInvariant();
+
+                waitSupported =
+                    all.IndexOf("wait-for-keyframe") >= 0;
+
+                requestSupported =
+                    all.IndexOf("request-keyframe") >= 0;
+
+                if (all.IndexOf("no such element") >= 0 ||
+                    all.IndexOf("no such element or plugin") >= 0)
+                {
+                    info = "rtph264depay 없음";
+                }
+            }
+            catch (Exception ex)
+            {
+                info = "inspect 실패: " + ex.GetType().Name;
+            }
+        }
+
+        bool RunProcessWithTimeout(
+            string file,
+            string args,
+            string workDir,
+            int timeoutMs,
+            out string stdout,
+            out string stderr)
+        {
+            stdout = "";
+            stderr = "";
+
+            StringBuilder outBuf = new StringBuilder();
+            StringBuilder errBuf = new StringBuilder();
+
+            Process p = null;
+
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.FileName = file;
+                psi.Arguments = args;
+                psi.UseShellExecute = false;
+                psi.CreateNoWindow = true;
+                psi.RedirectStandardOutput = true;
+                psi.RedirectStandardError = true;
+                psi.WorkingDirectory = workDir;
+
+                // Mission Planner가 예전 GStreamer를 찾는 과정에서 설정한
+                // GST_PLUGIN_PATH/PATH가 최신 설치본 검사에 섞이지 않도록 정리.
+                ConfigureSelectedGstEnvironment(psi, workDir);
+
+                p = new Process();
+                p.StartInfo = psi;
+
+                p.OutputDataReceived += delegate(object s, DataReceivedEventArgs e)
+                {
+                    if (e.Data != null)
+                    {
+                        lock (outBuf)
+                        {
+                            outBuf.AppendLine(e.Data);
+                        }
+                    }
+                };
+
+                p.ErrorDataReceived += delegate(object s, DataReceivedEventArgs e)
+                {
+                    if (e.Data != null)
+                    {
+                        lock (errBuf)
+                        {
+                            errBuf.AppendLine(e.Data);
+                        }
+                    }
+                };
+
+                p.Start();
+                p.BeginOutputReadLine();
+                p.BeginErrorReadLine();
+
+                bool exited = p.WaitForExit(timeoutMs);
+
+                if (!exited)
+                {
+                    try { p.Kill(); } catch { }
+                    try { p.WaitForExit(1000); } catch { }
+                }
+                else
+                {
+                    // 비동기 stdout/stderr event flush
+                    try { p.WaitForExit(); } catch { }
+                }
+
+                lock (outBuf)
+                {
+                    stdout = outBuf.ToString();
+                }
+
+                lock (errBuf)
+                {
+                    stderr = errBuf.ToString();
+                }
+
+                return exited;
+            }
+            catch (Exception ex)
+            {
+                stderr = ex.ToString();
+                return false;
+            }
+            finally
+            {
+                if (p != null)
+                {
+                    try { p.Dispose(); } catch { }
+                }
+            }
+        }
+
+        // ============================================================
+        // V10.3.2 - isolate selected GStreamer environment
+        // ============================================================
+
+        void ConfigureSelectedGstEnvironment(
+            ProcessStartInfo psi,
+            string binDir)
+        {
+            try
+            {
+                if (psi == null ||
+                    String.IsNullOrWhiteSpace(binDir))
+                    return;
+
+                string oldPath = "";
+
+                try
+                {
+                    oldPath = psi.EnvironmentVariables["PATH"];
+                }
+                catch { }
+
+                // 선택한 GStreamer의 DLL을 가장 먼저 찾게만 합니다.
+                psi.EnvironmentVariables["PATH"] =
+                    binDir +
+                    (String.IsNullOrWhiteSpace(oldPath)
+                        ? ""
+                        : ";" + oldPath);
+
+                // Mission Planner가 구버전용으로 설정했을 수 있는 "추가" plugin 경로만 제거.
+                // GST_PLUGIN_SYSTEM_PATH는 강제로 새 값으로 지정하지 않습니다.
+                // 최신 GStreamer가 자신의 설치 위치 기준으로 표준 plugin 경로를
+                // 자동 탐색하도록 맡깁니다.
+                RemoveEnv(psi, "GST_PLUGIN_PATH");
+                RemoveEnv(psi, "GST_PLUGIN_PATH_1_0");
+
+                // 실제 실패 원인을 stderr로 볼 수 있도록 적당한 debug level.
+                psi.EnvironmentVariables["GST_DEBUG"] = "1";
+
+                // V10.6: libgiolibproxy/GIO proxy 문제를 피하고
+                // 로컬 RTSP 주소로 직접 연결하도록 강제할 수 있습니다.
+                if (proxyBypass)
+                {
+                    psi.EnvironmentVariables["GIO_USE_PROXY_RESOLVER"] = "dummy";
+                    psi.EnvironmentVariables["NO_PROXY"] = "*";
+                    psi.EnvironmentVariables["no_proxy"] = "*";
+                }
