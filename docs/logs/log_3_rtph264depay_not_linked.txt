@@ -1,0 +1,45 @@
+10:14:54.448 === GStreamer V10.5 launch ===
+10:14:54.448 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:14:54.448 PROXY_BYPASS: True
+10:14:54.448 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=0 do-retransmission=false ! application/x-rtp,media=video,encoding-name=H264 ! rtph264depay request-keyframe=true ! decodebin3 ! queue max-size-buffers=6 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:14:54.448 
+10:14:54.529 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:14:54.529 [OUT] Setting pipeline to PAUSED ...
+10:14:54.726 [OUT] Pipeline is live and does not need PREROLL ...
+10:14:54.726 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:14:54.726 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:14:54.726 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:14:54.726 [OUT] Progress: (open) Opening Stream
+10:14:54.726 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:14:54.726 [OUT] Pipeline is PREROLLED ...
+10:14:54.726 [OUT] Prerolled, waiting for progress to finish...
+10:14:54.741 [OUT] Progress: (open) Retrieving server options
+10:14:54.753 [OUT] Progress: (open) Retrieving media info
+10:14:54.767 [OUT] Progress: (request) SETUP stream 0
+10:14:54.781 [OUT] Progress: (open) Opened Stream
+10:14:54.782 [OUT] Setting pipeline to PLAYING ...
+10:14:54.782 [OUT] New clock: GstSystemClock
+10:14:54.782 [OUT] Progress: (request) Sending PLAY request
+10:14:54.782 [OUT] Redistribute latency...
+10:14:54.782 [OUT] Progress: (request) Sending PLAY request
+10:14:54.782 [OUT] Redistribute latency...
+10:14:54.848 [OUT] Progress: (request) Sent PLAY request
+10:14:54.849 [OUT] Redistribute latency...
+10:14:54.884 [ERR] 0:00:00.403408900       3376      11336 WARN                 default gst/parse/grammar.y:950:gst_parse_no_more_pads:<rtspsrc0> warning: Delayed linking failed.
+10:14:54.884 [ERR] 0:00:00.403668500       3376      11336 WARN                 default gst/parse/grammar.y:950:gst_parse_no_more_pads:<rtspsrc0> warning: failed delayed linking some pad of GstRTSPSrc named rtspsrc0 to some pad of GstRtpH264Depay named rtph264depay0
+10:14:54.884 [ERR] 0:00:00.404083700       3376      10932 WARN                 basesrc gstbasesrc.c:3187:gst_base_src_loop:<udpsrc1> error: Internal data stream error.
+10:14:54.884 [ERR] 0:00:00.404255000       3376      10932 WARN                 basesrc gstbasesrc.c:3187:gst_base_src_loop:<udpsrc1> error: streaming stopped, reason not-linked (-1)
+10:14:54.889 [OUT] WARNING: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Delayed linking failed.
+10:14:54.889 [OUT] Additional debug info:
+10:14:54.889 [OUT] gst/parse/grammar.y(950): gst_parse_no_more_pads (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:14:54.889 [OUT] failed delayed linking some pad of GstRTSPSrc named rtspsrc0 to some pad of GstRtpH264Depay named rtph264depay0
+10:14:54.889 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0/GstUDPSrc:udpsrc1: Internal data stream error.
+10:14:54.889 [OUT] Execution ended after 0:00:00.107168700
+10:14:54.889 [OUT] Setting pipeline to NULL ...
+10:14:54.889 [ERR] Additional debug info:
+10:14:54.889 [ERR] ../libs/gst/base/gstbasesrc.c(3187): gst_base_src_loop (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0/GstUDPSrc:udpsrc1:
+10:14:54.889 [ERR] streaming stopped, reason not-linked (-1)
+10:14:54.889 [ERR] Details:
+10:14:54.889 [ERR] details, flow-return=(int)-1;
+10:14:54.904 [OUT] Freeing pipeline ...
+10:14:54.936 === gst-launch exited, code=1 ===
