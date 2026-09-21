@@ -1443,3 +1443,183 @@ namespace GStreamerV109
             detectedCodec = S10("detected_codec", "미감지");
             detectedPayload = S10("detected_payload", "-");
             detectedClockRate = S10("detected_clock", "-");
+
+            gstLaunchPath = S10("gst_path", "");
+            lastProbedGstPath = S10("gst_probe_path", "");
+            gstVersionText = S10("gst_version", "미확인");
+            waitKeyframeSupported = B10("gst_wait_supported", false);
+            requestKeyframeSupported = B10("gst_request_supported", false);
+
+            // 저장된 경로가 없거나 사라졌으면 한 번 자동 검색.
+            if (String.IsNullOrWhiteSpace(gstLaunchPath) ||
+                !File.Exists(gstLaunchPath))
+            {
+                string autoPath = AutoFindGst();
+
+                if (!String.IsNullOrWhiteSpace(autoPath))
+                    gstLaunchPath = autoPath;
+            }
+
+        }
+
+        void SaveCfg()
+        {
+            try
+            {
+                Settings.Instance[K10 + "url"] = url;
+                Settings.Instance[K10 + "proto"] = proto;
+                Settings.Instance[K10 + "latency"] = latency.ToString();
+                Settings.Instance[K10 + "buffers"] = buffers.ToString();
+                Settings.Instance[K10 + "leaky"] = leaky.ToString();
+                Settings.Instance[K10 + "tcp"] = tcpTimeout.ToString();
+                Settings.Instance[K10 + "udp_timeout"] =
+                    udpTimeoutSec.ToString();
+                Settings.Instance[K10 + "retry"] = retryDelay.ToString();
+                Settings.Instance[K10 + "connect_watchdog"] =
+                    connectWatchdogSec.ToString();
+                Settings.Instance[K10 + "retrans"] = retrans.ToString();
+                Settings.Instance[K10 + "do_rtcp"] = doRtcp.ToString();
+                Settings.Instance[K10 + "rtsp_keep_alive"] =
+                    rtspKeepAlive.ToString();
+
+                Settings.Instance[K10 + "proxy_bypass"] =
+                    proxyBypass.ToString();
+
+                Settings.Instance[K10 + "auto"] = autoRetry.ToString();
+
+                Settings.Instance[K10 + "loss_mode"] =
+                    lossMode.ToString();
+
+                Settings.Instance[K10 + "detected_codec"] =
+                    detectedCodec;
+
+                Settings.Instance[K10 + "detected_payload"] =
+                    detectedPayload;
+
+                Settings.Instance[K10 + "detected_clock"] =
+                    detectedClockRate;
+
+                Settings.Instance[K10 + "gst_path"] =
+                    gstLaunchPath;
+
+                Settings.Instance[K10 + "gst_probe_path"] =
+                    lastProbedGstPath;
+
+                Settings.Instance[K10 + "gst_version"] =
+                    gstVersionText;
+
+                Settings.Instance[K10 + "gst_wait_supported"] =
+                    waitKeyframeSupported.ToString();
+
+                Settings.Instance[K10 + "gst_request_supported"] =
+                    requestKeyframeSupported.ToString();
+            }
+            catch { }
+        }
+
+        string S10(string k, string d)
+        {
+            return GetSetting(K10 + k, d);
+        }
+
+        string S9(string k, string d)
+        {
+            return GetSetting(K9 + k, d);
+        }
+
+        string GetSetting(string key, string d)
+        {
+            try
+            {
+                string v = Settings.Instance[key];
+                return String.IsNullOrWhiteSpace(v) ? d : v;
+            }
+            catch
+            {
+                return d;
+            }
+        }
+
+        int I10(string k, int d, int min, int max)
+        {
+            return GetInt(K10 + k, d, min, max);
+        }
+
+        int I9(string k, int d, int min, int max)
+        {
+            return GetInt(K9 + k, d, min, max);
+        }
+
+        int GetInt(string key, int d, int min, int max)
+        {
+            int v;
+
+            if (!Int32.TryParse(GetSetting(key, d.ToString()), out v))
+                v = d;
+
+            return Math.Max(min, Math.Min(max, v));
+        }
+
+        bool B10(string k, bool d)
+        {
+            return GetBool(K10 + k, d);
+        }
+
+        bool B9(string k, bool d)
+        {
+            return GetBool(K9 + k, d);
+        }
+
+        bool GetBool(string key, bool d)
+        {
+            bool v;
+
+            return Boolean.TryParse(
+                GetSetting(key, d.ToString()), out v)
+                ? v : d;
+        }
+
+        // ============================================================
+        // V10.3 - non-blocking GStreamer probe
+        // ============================================================
+
+        delegate void ProbeComplete(
+            string path,
+            string version,
+            bool waitSupported,
+            bool requestSupported,
+            string info);
+
+        void StartProbeAsync(string path, ProbeComplete complete)
+        {
+            System.Threading.ThreadPool.QueueUserWorkItem(delegate
+            {
+                string ver;
+                bool w;
+                bool r;
+                string info;
+
+                ProbeGstSafe(
+                    path,
+                    out ver,
+                    out w,
+                    out r,
+                    out info);
+
+                try
+                {
+                    if (cfg != null && !cfg.IsDisposed)
+                    {
+                        cfg.BeginInvoke((MethodInvoker)delegate
+                        {
+                            complete(path, ver, w, r, info);
+                        });
+                    }
+                }
+                catch { }
+            });
+        }
+
+        delegate void ElementProbeComplete(string result);
+
+        void StartElementProbeAsync(
