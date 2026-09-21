@@ -1,0 +1,15 @@
+10:47:38.561 === GStreamer V10.7 launch ===
+10:47:38.561 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:47:38.561 PROXY_BYPASS: True
+10:47:38.561 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=0 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:47:38.561 
+10:47:38.644 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:47:38.644 [OUT] Setting pipeline to PAUSED ...
+10:47:38.842 [OUT] Pipeline is live and does not need PREROLL ...
+10:47:38.842 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:47:38.842 [OUT] Progress: (open) Opening Stream
+10:47:38.842 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:47:38.842 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:47:38.842 [OUT] Pipeline is PREROLLED ...
+10:47:38.842 [OUT] Prerolled, waiting for progress to finish...
+10:47:38.842 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
