@@ -2165,3 +2165,90 @@ namespace GStreamerV109
         [DllImport("user32.dll")]
         static extern bool EnumWindows(
             EnumWindowsProc f,
+
+            IntPtr l);
+
+        [DllImport("user32.dll")]
+        static extern uint GetWindowThreadProcessId(
+            IntPtr h,
+            out uint p);
+
+        [DllImport("user32.dll")]
+        static extern bool IsWindowVisible(IntPtr h);
+
+        [DllImport("user32.dll")]
+        static extern bool IsWindow(IntPtr h);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr SetParent(
+            IntPtr c,
+            IntPtr p);
+
+        [DllImport("user32.dll")]
+        static extern bool MoveWindow(
+            IntPtr h,
+            int x,
+            int y,
+            int w,
+            int he,
+            bool r);
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(
+            IntPtr h,
+            int c);
+
+        [DllImport(
+            "user32.dll",
+            EntryPoint = "GetWindowLong")]
+        static extern int GetWindowLong32(
+            IntPtr h,
+            int i);
+
+        [DllImport(
+            "user32.dll",
+            EntryPoint = "GetWindowLongPtr")]
+        static extern IntPtr GetWindowLongPtr64(
+            IntPtr h,
+            int i);
+
+        [DllImport(
+            "user32.dll",
+            EntryPoint = "SetWindowLong")]
+        static extern int SetWindowLong32(
+            IntPtr h,
+            int i,
+            int v);
+
+        [DllImport(
+            "user32.dll",
+            EntryPoint = "SetWindowLongPtr")]
+        static extern IntPtr SetWindowLongPtr64(
+            IntPtr h,
+            int i,
+            IntPtr v);
+
+        static IntPtr GetWindowLongPtr(
+            IntPtr h,
+            int i)
+        {
+            return IntPtr.Size == 8
+                ? GetWindowLongPtr64(h, i)
+                : new IntPtr(GetWindowLong32(h, i));
+        }
+
+        static IntPtr SetWindowLongPtr(
+            IntPtr h,
+            int i,
+            IntPtr v)
+        {
+            return IntPtr.Size == 8
+                ? SetWindowLongPtr64(h, i, v)
+                : new IntPtr(
+                    SetWindowLong32(
+                        h,
+                        i,
+                        v.ToInt32()));
+        }
+    }
+}
