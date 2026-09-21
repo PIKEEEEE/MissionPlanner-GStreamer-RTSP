@@ -539,3 +539,184 @@ namespace GStreamerV109
             nUdpTimeout.ValueChanged += delegate { updateUi(); };
             cRetrans.CheckedChanged += delegate { updateUi(); };
             cRtcp.CheckedChanged += delegate { updateUi(); };
+
+            cKeepAlive.CheckedChanged += delegate { updateUi(); };
+            cLossMode.SelectedIndexChanged += delegate { updateUi(); };
+
+            // 중요: 찾아보기는 경로만 고릅니다. 검사 실행 안 함.
+            browseGst.Click += delegate
+            {
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Title = "사용할 gst-launch-1.0.exe 선택";
+                dlg.Filter =
+                    "GStreamer gst-launch|gst-launch-1.0.exe|실행 파일|*.exe|모든 파일|*.*";
+
+                try
+                {
+                    string current = tGst.Text.Trim();
+
+                    if (!String.IsNullOrWhiteSpace(current) &&
+                        File.Exists(current))
+                    {
+                        dlg.InitialDirectory = Path.GetDirectoryName(current);
+                        dlg.FileName = Path.GetFileName(current);
+                    }
+                }
+                catch { }
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    tGst.Text = dlg.FileName;
+                }
+
+                dlg.Dispose();
+            };
+
+            // 자동 검색도 경로만 넣고 검사 실행 안 함.
+            autoFind.Click += delegate
+            {
+                string found = AutoFindGst();
+
+                if (String.IsNullOrWhiteSpace(found))
+                {
+                    MessageBox.Show(
+                        "자동 검색으로 gst-launch-1.0.exe를 찾지 못했습니다.",
+                        "GStreamer V10.9");
+                    return;
+                }
+
+                tGst.Text = found;
+            };
+
+            // 검사만 백그라운드에서 수행.
+            inspectGst.Click += delegate
+            {
+                string path = tGst.Text.Trim();
+
+                if (String.IsNullOrWhiteSpace(path) || !File.Exists(path))
+                {
+                    MessageBox.Show(
+                        "먼저 올바른 gst-launch-1.0.exe를 선택하세요.",
+                        "GStreamer V10.9");
+                    return;
+                }
+
+                inspectGst.Enabled = false;
+                browseGst.Enabled = false;
+                autoFind.Enabled = false;
+                versionLabel.Text = "버전: 검사 중...";
+                gstCompatLabel.Text = "rtph264depay: 검사 중...";
+
+                StartProbeAsync(
+                    path,
+                    delegate(
+                        string probedPath,
+                        string ver,
+                        bool w,
+                        bool r,
+                        string info)
+                    {
+                        if (cfg == null || cfg.IsDisposed)
+                            return;
+
+                        lastProbedGstPath = probedPath;
+                        gstVersionText = ver;
+                        waitKeyframeSupported = w;
+                        requestKeyframeSupported = r;
+        
+                        versionLabel.Text = "버전: " + ver;
+                        gstCompatLabel.Text =
+                            "rtph264depay: wait-for-keyframe=" +
+                            (w ? "지원" : "미지원/자동제외") +
+                            " / request-keyframe=" +
+                            (r ? "지원" : "미지원/자동제외") +
+                            (String.IsNullOrWhiteSpace(info)
+                                ? ""
+                                : "  (" + info + ")");
+
+                        inspectGst.Enabled = true;
+                        browseGst.Enabled = true;
+                        autoFind.Enabled = true;
+
+                        updateUi();
+                    });
+            };
+
+            testElements.Click += delegate
+            {
+                string path = tGst.Text.Trim();
+
+                if (String.IsNullOrWhiteSpace(path) ||
+                    !File.Exists(path))
+                {
+                    MessageBox.Show(
+                        "먼저 gst-launch-1.0.exe를 선택하세요.",
+                        "GStreamer V10.9");
+                    return;
+                }
+
+                testElements.Enabled = false;
+                testElements.Text = "검사 중...";
+
+                StartElementProbeAsync(
+                    path,
+                    delegate(string result)
+                    {
+                        if (cfg == null || cfg.IsDisposed)
+                            return;
+
+                        testElements.Enabled = true;
+                        testElements.Text = "영상 요소 검사";
+
+                        MessageBox.Show(
+                            result,
+                            "GStreamer 영상 요소 검사");
+                    });
+            };
+
+            apply.Click += delegate
+            {
+                if (String.IsNullOrWhiteSpace(tUrl.Text))
+                {
+                    MessageBox.Show("RTSP 주소를 입력하세요.");
+                    return;
+                }
+
+                string selectedPath = tGst.Text.Trim();
+
+                if (String.IsNullOrWhiteSpace(selectedPath) ||
+                    !File.Exists(selectedPath))
+                {
+                    MessageBox.Show(
+                        "사용할 gst-launch-1.0.exe 경로가 올바르지 않습니다.",
+                        "GStreamer V10.9");
+                    return;
+                }
+
+                gstLaunchPath = selectedPath;
+
+                bool pathWasProbed =
+                    String.Equals(
+                        selectedPath,
+                        lastProbedGstPath,
+                        StringComparison.OrdinalIgnoreCase);
+
+                // 검사하지 않은 새 경로는 안전하게 keyframe 고급 속성을 제외.
+                if (!pathWasProbed)
+                {
+                    gstVersionText = "검사 안 함";
+                    waitKeyframeSupported = false;
+                    requestKeyframeSupported = false;
+                    }
+
+                url = tUrl.Text.Trim();
+                proto = Convert.ToString(cProto.SelectedItem);
+                latency = (int)nLat.Value;
+                buffers = (int)nBuf.Value;
+                leaky = cLeaky.SelectedIndex;
+                tcpTimeout = (int)nTcp.Value;
+                udpTimeoutSec = (int)nUdpTimeout.Value;
+                retrans = cRetrans.Checked;
+                doRtcp = cRtcp.Checked;
+                rtspKeepAlive = cKeepAlive.Checked;
+                proxyBypass = cProxyBypass.Checked;
