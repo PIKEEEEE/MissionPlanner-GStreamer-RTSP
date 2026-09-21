@@ -720,3 +720,184 @@ namespace GStreamerV109
                 doRtcp = cRtcp.Checked;
                 rtspKeepAlive = cKeepAlive.Checked;
                 proxyBypass = cProxyBypass.Checked;
+
+                lossMode = cLossMode.SelectedIndex;
+                autoRetry = cAuto.Checked;
+                retryDelay = (int)nRetry.Value;
+                connectWatchdogSec = (int)nConnectWatchdog.Value;
+
+                SaveCfg();
+
+                if (active)
+                {
+                    manualStop = true;
+                    KillGst();
+                    manualStop = false;
+                    SetStatus("설정 적용 중...");
+                    nextRetry = DateTime.Now;
+                    StartGst();
+
+                    MessageBox.Show(
+                        "설정을 저장했고 선택한 GStreamer로 재시작했습니다.",
+                        "GStreamer V10.9");
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "설정을 저장했습니다. 다음 시작부터 적용됩니다.",
+                        "GStreamer V10.9");
+                }
+            };
+
+            close.Click += delegate { cfg.Close(); };
+
+            updateUi();
+
+            cfg.Show();
+            cfg.BringToFront();
+        }
+
+        void AddLabel(string text, int x, int y)
+        {
+            Label l = new Label();
+            l.Text = text;
+            l.Left = x;
+            l.Top = y;
+            l.AutoSize = true;
+            cfg.Controls.Add(l);
+        }
+
+        NumericUpDown Num(int x, int y, int min, int max, int val)
+        {
+            NumericUpDown n = new NumericUpDown();
+            n.Left = x;
+            n.Top = y;
+            n.Width = 110;
+            n.Minimum = min;
+            n.Maximum = max;
+            n.Value = Math.Max(min, Math.Min(max, val));
+            return n;
+        }
+
+        // ============================================================
+        // Pipeline
+        // ============================================================
+
+        string Pipeline()
+        {
+            return BuildPipelineFromValues(
+                url, proto, latency, buffers, leaky, tcpTimeout,
+                udpTimeoutSec, retrans, doRtcp, rtspKeepAlive, lossMode);
+        }
+
+        string BuildPipelineFromValues(
+            string pUrl,
+            string pProto,
+            int pLatency,
+            int pBuffers,
+            int pLeaky,
+            int pTcpTimeout,
+            int pUdpTimeoutSec,
+            bool pRetrans,
+            bool pDoRtcp,
+            bool pRtspKeepAlive,
+            int pLossMode)
+        {
+            string src;
+
+            string common =
+                " latency=" + pLatency +
+                " do-rtcp=" + (pDoRtcp ? "true" : "false") +
+                " do-rtsp-keep-alive=" +
+                (pRtspKeepAlive ? "true" : "false");
+
+            // V10.7 안전 저지연 모드:
+            // RTP depayloader를 강제하지 않고 rtspsrc jitterbuffer의 최대 지연만 제한합니다.
+            if (pLossMode == 1)
+                common += " drop-on-latency=true";
+
+            if (String.Equals(
+                    pProto,
+                    "TCP",
+                    StringComparison.OrdinalIgnoreCase))
+            {
+                long timeoutUs =
+                    (long)pTcpTimeout * 1000000L;
+
+                src =
+                    "rtspsrc location=" + pUrl +
+                    " protocols=tcp" +
+                    common +
+                    " tcp-timeout=" + timeoutUs;
+            }
+            else if (String.Equals(
+                         pProto,
+                         "AUTO",
+                         StringComparison.OrdinalIgnoreCase))
+            {
+                long timeoutUs =
+                    (long)pTcpTimeout * 1000000L;
+
+                long udpTimeoutUs =
+                    (long)pUdpTimeoutSec * 1000000L;
+
+                src =
+                    "rtspsrc location=" + pUrl +
+                    common +
+                    " udp-reconnect=1" +
+                    " timeout=" + udpTimeoutUs +
+                    " tcp-timeout=" + timeoutUs +
+                    " do-retransmission=" +
+                    (pRetrans ? "true" : "false");
+            }
+            else
+            {
+                long udpTimeoutUs =
+                    (long)pUdpTimeoutSec * 1000000L;
+
+                src =
+                    "rtspsrc location=" + pUrl +
+                    " protocols=udp" +
+                    common +
+                    " udp-reconnect=1" +
+                    " timeout=" + udpTimeoutUs +
+                    " do-retransmission=" +
+                    (pRetrans ? "true" : "false");
+            }
+
+            // 핵심: 항상 기존에 정상 동작한 decodebin3 경로를 사용합니다.
+            // rtph264depay / rtph265depay를 직접 삽입하지 않습니다.
+            return src +
+                " ! application/x-rtp" +
+                " ! decodebin3" +
+                " ! queue max-size-buffers=" + pBuffers +
+                " max-size-bytes=0 max-size-time=0" +
+                " leaky=" + pLeaky +
+                " ! videoconvert" +
+                " ! autovideosink sync=false";
+        }
+
+        // ============================================================
+        // V10.9 - smart reconnect backoff
+        // ============================================================
+
+        int BaseRecoveryDelaySec()
+        {
+            // 사용자가 Reconnect delay를 더 크게 잡으면 그 값을 존중하되,
+            // 임베디드 RTSP 서버 정리 시간을 위해 최소 8초는 기다립니다.
+            return Math.Max(MinServerRecoveryWaitSec, retryDelay);
+        }
+
+        int NextFailedConnectDelaySec()
+        {
+            reconnectFailureCount++;
+
+            int baseSec = BaseRecoveryDelaySec();
+            int shift = Math.Min(reconnectFailureCount - 1, 3);
+
+            long delay = (long)baseSec << shift;
+
+            if (delay > MaxReconnectBackoffSec)
+                delay = MaxReconnectBackoffSec;
+
+            return (int)delay;
