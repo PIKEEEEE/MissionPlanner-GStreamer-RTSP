@@ -1,0 +1,30 @@
+23:47:38.876 === GStreamer V10.4 launch ===
+23:47:38.876 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+23:47:38.876 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 udp-reconnect=1 timeout=0 do-retransmission=true ! application/x-rtp,media=video,encoding-name=H264 ! rtph264depay wait-for-keyframe=true request-keyframe=true ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+23:47:38.876 
+23:47:38.950 [OUT] Use Windows high-resolution clock, precision: 1 ms
+23:47:38.950 [OUT] Setting pipeline to PAUSED ...
+23:47:39.143 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+23:47:39.143 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+23:47:39.143 [OUT] Pipeline is live and does not need PREROLL ...
+23:47:39.144 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)47858, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+23:47:39.144 [OUT] Progress: (open) Opening Stream
+23:47:39.144 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+23:47:39.144 [OUT] Pipeline is PREROLLED ...
+23:47:39.144 [OUT] Prerolled, waiting for progress to finish...
+23:47:39.157 [OUT] Progress: (open) Retrieving server options
+23:47:39.168 [OUT] Progress: (open) Retrieving media info
+23:47:39.191 [OUT] Progress: (request) SETUP stream 0
+23:47:39.205 [OUT] Progress: (open) Opened Stream
+23:47:39.205 [OUT] Setting pipeline to PLAYING ...
+23:47:39.205 [ERR] 0:00:00.295347900      10208       4248 WARN                 rtspsrc gstrtspsrc.c:6507:gst_rtspsrc_loop_udp:<rtspsrc0> warning: The server closed the connection.
+23:47:39.205 [ERR] 0:00:00.295759200      10208       4248 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Operation was cancelled
+23:47:39.205 [ERR] 0:00:00.295901200      10208       4248 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Operation interrupted)
+23:47:39.206 [OUT] New clock: GstSystemClock
+23:47:39.206 [ERR] 0:00:00.296044100      10208       4248 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+23:47:39.207 [OUT] WARNING: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not read from resource.
+23:47:39.207 [OUT] Additional debug info:
+23:47:39.207 [OUT] ../gst/rtsp/gstrtspsrc.c(6507): gst_rtspsrc_loop_udp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+23:47:39.207 [OUT] The server closed the connection.
+23:47:39.207 [OUT] Progress: (request) Sending PLAY request
+23:47:39.207 [OUT] Progress: (request) Sent PLAY request
