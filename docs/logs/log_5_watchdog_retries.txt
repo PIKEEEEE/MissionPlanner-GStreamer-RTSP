@@ -1,0 +1,353 @@
+nt\)377\,\ sent-rb-lsr\=\(uint\)2132382845\,\ sent-rb-dlsr\=\(uint\)437151\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\;" >, rtx-count=(uint)0, recv-rtx-req-count=(uint)0, sent-rtx-req-count=(uint)0;
+10:59:04.383 [OUT] /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0/GstRtpBin:manager/GstRtpSession:rtpsession0: stats = application/x-rtp-session-stats, rtx-drop-count=(uint)0, sent-nack-count=(uint)0, recv-nack-count=(uint)0, source-stats=(GValueArray)< "application/x-rtp-source-stats\,\ ssrc\=\(uint\)3906224189\,\ internal\=\(boolean\)true\,\ validated\=\(boolean\)true\,\ received-bye\=\(boolean\)false\,\ is-csrc\=\(boolean\)false\,\ is-sender\=\(boolean\)false\,\ seqnum-base\=\(int\)-1\,\ clock-rate\=\(int\)-1\,\ octets-sent\=\(guint64\)0\,\ packets-sent\=\(guint64\)0\,\ octets-received\=\(guint64\)0\,\ packets-received\=\(guint64\)0\,\ bytes-received\=\(guint64\)0\,\ bitrate\=\(guint64\)0\,\ packets-lost\=\(int\)0\,\ jitter\=\(uint\)0\,\ sent-pli-count\=\(uint\)0\,\ recv-pli-count\=\(uint\)0\,\ sent-fir-count\=\(uint\)0\,\ recv-fir-count\=\(uint\)0\,\ sent-nack-count\=\(uint\)0\,\ recv-nack-count\=\(uint\)0\,\ recv-packet-rate\=\(uint\)0\,\ have-sr\=\(boolean\)false\,\ sr-ntptime\=\(guint64\)0\,\ sr-rtptime\=\(uint\)0\,\ sr-octet-count\=\(uint\)0\,\ sr-packet-count\=\(uint\)0\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\,\ received-rr\=\(int\)\{\ \ \}\;", "application/x-rtp-source-stats\,\ ssrc\=\(uint\)804885324\,\ internal\=\(boolean\)false\,\ validated\=\(boolean\)true\,\ received-bye\=\(boolean\)false\,\ is-csrc\=\(boolean\)false\,\ is-sender\=\(boolean\)false\,\ seqnum-base\=\(int\)-1\,\ clock-rate\=\(int\)90000\,\ rtp-from\=\(string\)192.168.50.25:6970\,\ rtcp-from\=\(string\)192.168.50.25:6971\,\ octets-sent\=\(guint64\)0\,\ packets-sent\=\(guint64\)0\,\ octets-received\=\(guint64\)3748716\,\ packets-received\=\(guint64\)3031\,\ bytes-received\=\(guint64\)3869956\,\ bitrate\=\(guint64\)817860\,\ packets-lost\=\(int\)0\,\ jitter\=\(uint\)377\,\ sent-pli-count\=\(uint\)0\,\ recv-pli-count\=\(uint\)0\,\ sent-fir-count\=\(uint\)0\,\ recv-fir-count\=\(uint\)0\,\ sent-nack-count\=\(uint\)0\,\ recv-nack-count\=\(uint\)0\,\ recv-packet-rate\=\(uint\)305\,\ have-sr\=\(boolean\)true\,\ sr-ntptime\=\(guint64\)9487535312851551098\,\ sr-rtptime\=\(uint\)3278000628\,\ sr-octet-count\=\(uint\)3737070\,\ sr-packet-count\=\(uint\)3021\,\ sent-rb\=\(boolean\)true\,\ sent-rb-fractionlost\=\(uint\)0\,\ sent-rb-packetslost\=\(int\)0\,\ sent-rb-exthighestseq\=\(uint\)12064\,\ sent-rb-jitter\=\(uint\)377\,\ sent-rb-lsr\=\(uint\)2132382845\,\ sent-rb-dlsr\=\(uint\)437151\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\;" >, rtx-count=(uint)0, recv-rtx-req-count=(uint)0, sent-rtx-req-count=(uint)0;
+10:59:05.652 [OUT] /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0/GstRtpBin:manager/GstRtpSession:rtpsession0: stats = application/x-rtp-session-stats, rtx-drop-count=(uint)0, sent-nack-count=(uint)0, recv-nack-count=(uint)0, source-stats=(GValueArray)< "application/x-rtp-source-stats\,\ ssrc\=\(uint\)3906224189\,\ internal\=\(boolean\)true\,\ validated\=\(boolean\)true\,\ received-bye\=\(boolean\)false\,\ is-csrc\=\(boolean\)false\,\ is-sender\=\(boolean\)false\,\ seqnum-base\=\(int\)-1\,\ clock-rate\=\(int\)-1\,\ octets-sent\=\(guint64\)0\,\ packets-sent\=\(guint64\)0\,\ octets-received\=\(guint64\)0\,\ packets-received\=\(guint64\)0\,\ bytes-received\=\(guint64\)0\,\ bitrate\=\(guint64\)0\,\ packets-lost\=\(int\)0\,\ jitter\=\(uint\)0\,\ sent-pli-count\=\(uint\)0\,\ recv-pli-count\=\(uint\)0\,\ sent-fir-count\=\(uint\)0\,\ recv-fir-count\=\(uint\)0\,\ sent-nack-count\=\(uint\)0\,\ recv-nack-count\=\(uint\)0\,\ recv-packet-rate\=\(uint\)0\,\ have-sr\=\(boolean\)false\,\ sr-ntptime\=\(guint64\)0\,\ sr-rtptime\=\(uint\)0\,\ sr-octet-count\=\(uint\)0\,\ sr-packet-count\=\(uint\)0\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\,\ received-rr\=\(int\)\{\ \ \}\;", "application/x-rtp-source-stats\,\ ssrc\=\(uint\)804885324\,\ internal\=\(boolean\)false\,\ validated\=\(boolean\)true\,\ received-bye\=\(boolean\)false\,\ is-csrc\=\(boolean\)false\,\ is-sender\=\(boolean\)false\,\ seqnum-base\=\(int\)-1\,\ clock-rate\=\(int\)90000\,\ rtp-from\=\(string\)192.168.50.25:6970\,\ rtcp-from\=\(string\)192.168.50.25:6971\,\ octets-sent\=\(guint64\)0\,\ packets-sent\=\(guint64\)0\,\ octets-received\=\(guint64\)3748716\,\ packets-received\=\(guint64\)3031\,\ bytes-received\=\(guint64\)3869956\,\ bitrate\=\(guint64\)817860\,\ packets-lost\=\(int\)0\,\ jitter\=\(uint\)377\,\ sent-pli-count\=\(uint\)0\,\ recv-pli-count\=\(uint\)0\,\ sent-fir-count\=\(uint\)0\,\ recv-fir-count\=\(uint\)0\,\ sent-nack-count\=\(uint\)0\,\ recv-nack-count\=\(uint\)0\,\ recv-packet-rate\=\(uint\)305\,\ have-sr\=\(boolean\)true\,\ sr-ntptime\=\(guint64\)9487535312851551098\,\ sr-rtptime\=\(uint\)3278000628\,\ sr-octet-count\=\(uint\)3737070\,\ sr-packet-count\=\(uint\)3021\,\ sent-rb\=\(boolean\)true\,\ sent-rb-fractionlost\=\(uint\)0\,\ sent-rb-packetslost\=\(int\)0\,\ sent-rb-exthighestseq\=\(uint\)12064\,\ sent-rb-jitter\=\(uint\)377\,\ sent-rb-lsr\=\(uint\)2132382845\,\ sent-rb-dlsr\=\(uint\)437151\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\;" >, rtx-count=(uint)0, recv-rtx-req-count=(uint)0, sent-rtx-req-count=(uint)0;
+10:59:06.288 [OUT] /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0/GstRtpBin:manager/GstRtpSession:rtpsession0: stats = application/x-rtp-session-stats, rtx-drop-count=(uint)0, sent-nack-count=(uint)0, recv-nack-count=(uint)0, source-stats=(GValueArray)< "application/x-rtp-source-stats\,\ ssrc\=\(uint\)3906224189\,\ internal\=\(boolean\)true\,\ validated\=\(boolean\)true\,\ received-bye\=\(boolean\)false\,\ is-csrc\=\(boolean\)false\,\ is-sender\=\(boolean\)false\,\ seqnum-base\=\(int\)-1\,\ clock-rate\=\(int\)-1\,\ octets-sent\=\(guint64\)0\,\ packets-sent\=\(guint64\)0\,\ octets-received\=\(guint64\)0\,\ packets-received\=\(guint64\)0\,\ bytes-received\=\(guint64\)0\,\ bitrate\=\(guint64\)0\,\ packets-lost\=\(int\)0\,\ jitter\=\(uint\)0\,\ sent-pli-count\=\(uint\)0\,\ recv-pli-count\=\(uint\)0\,\ sent-fir-count\=\(uint\)0\,\ recv-fir-count\=\(uint\)0\,\ sent-nack-count\=\(uint\)0\,\ recv-nack-count\=\(uint\)0\,\ recv-packet-rate\=\(uint\)0\,\ have-sr\=\(boolean\)false\,\ sr-ntptime\=\(guint64\)0\,\ sr-rtptime\=\(uint\)0\,\ sr-octet-count\=\(uint\)0\,\ sr-packet-count\=\(uint\)0\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\,\ received-rr\=\(int\)\{\ \ \}\;", "application/x-rtp-source-stats\,\ ssrc\=\(uint\)804885324\,\ internal\=\(boolean\)false\,\ validated\=\(boolean\)true\,\ received-bye\=\(boolean\)false\,\ is-csrc\=\(boolean\)false\,\ is-sender\=\(boolean\)false\,\ seqnum-base\=\(int\)-1\,\ clock-rate\=\(int\)90000\,\ rtp-from\=\(string\)192.168.50.25:6970\,\ rtcp-from\=\(string\)192.168.50.25:6971\,\ octets-sent\=\(guint64\)0\,\ packets-sent\=\(guint64\)0\,\ octets-received\=\(guint64\)3748716\,\ packets-received\=\(guint64\)3031\,\ bytes-received\=\(guint64\)3869956\,\ bitrate\=\(guint64\)817860\,\ packets-lost\=\(int\)0\,\ jitter\=\(uint\)377\,\ sent-pli-count\=\(uint\)0\,\ recv-pli-count\=\(uint\)0\,\ sent-fir-count\=\(uint\)0\,\ recv-fir-count\=\(uint\)0\,\ sent-nack-count\=\(uint\)0\,\ recv-nack-count\=\(uint\)0\,\ recv-packet-rate\=\(uint\)305\,\ have-sr\=\(boolean\)true\,\ sr-ntptime\=\(guint64\)9487535312851551098\,\ sr-rtptime\=\(uint\)3278000628\,\ sr-octet-count\=\(uint\)3737070\,\ sr-packet-count\=\(uint\)3021\,\ sent-rb\=\(boolean\)true\,\ sent-rb-fractionlost\=\(uint\)0\,\ sent-rb-packetslost\=\(int\)0\,\ sent-rb-exthighestseq\=\(uint\)12064\,\ sent-rb-jitter\=\(uint\)377\,\ sent-rb-lsr\=\(uint\)2132382845\,\ sent-rb-dlsr\=\(uint\)437151\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\;" >, rtx-count=(uint)0, recv-rtx-req-count=(uint)0, sent-rtx-req-count=(uint)0;
+10:59:09.379 [OUT] /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0/GstRtpBin:manager/GstRtpSession:rtpsession0: stats = application/x-rtp-session-stats, rtx-drop-count=(uint)0, sent-nack-count=(uint)0, recv-nack-count=(uint)0, source-stats=(GValueArray)< "application/x-rtp-source-stats\,\ ssrc\=\(uint\)3906224189\,\ internal\=\(boolean\)true\,\ validated\=\(boolean\)true\,\ received-bye\=\(boolean\)false\,\ is-csrc\=\(boolean\)false\,\ is-sender\=\(boolean\)false\,\ seqnum-base\=\(int\)-1\,\ clock-rate\=\(int\)-1\,\ octets-sent\=\(guint64\)0\,\ packets-sent\=\(guint64\)0\,\ octets-received\=\(guint64\)0\,\ packets-received\=\(guint64\)0\,\ bytes-received\=\(guint64\)0\,\ bitrate\=\(guint64\)0\,\ packets-lost\=\(int\)0\,\ jitter\=\(uint\)0\,\ sent-pli-count\=\(uint\)0\,\ recv-pli-count\=\(uint\)0\,\ sent-fir-count\=\(uint\)0\,\ recv-fir-count\=\(uint\)0\,\ sent-nack-count\=\(uint\)0\,\ recv-nack-count\=\(uint\)0\,\ recv-packet-rate\=\(uint\)0\,\ have-sr\=\(boolean\)false\,\ sr-ntptime\=\(guint64\)0\,\ sr-rtptime\=\(uint\)0\,\ sr-octet-count\=\(uint\)0\,\ sr-packet-count\=\(uint\)0\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\,\ received-rr\=\(int\)\{\ \ \}\;", "application/x-rtp-source-stats\,\ ssrc\=\(uint\)804885324\,\ internal\=\(boolean\)false\,\ validated\=\(boolean\)true\,\ received-bye\=\(boolean\)false\,\ is-csrc\=\(boolean\)false\,\ is-sender\=\(boolean\)false\,\ seqnum-base\=\(int\)-1\,\ clock-rate\=\(int\)90000\,\ rtp-from\=\(string\)192.168.50.25:6970\,\ rtcp-from\=\(string\)192.168.50.25:6971\,\ octets-sent\=\(guint64\)0\,\ packets-sent\=\(guint64\)0\,\ octets-received\=\(guint64\)3748716\,\ packets-received\=\(guint64\)3031\,\ bytes-received\=\(guint64\)3869956\,\ bitrate\=\(guint64\)817860\,\ packets-lost\=\(int\)0\,\ jitter\=\(uint\)377\,\ sent-pli-count\=\(uint\)0\,\ recv-pli-count\=\(uint\)0\,\ sent-fir-count\=\(uint\)0\,\ recv-fir-count\=\(uint\)0\,\ sent-nack-count\=\(uint\)0\,\ recv-nack-count\=\(uint\)0\,\ recv-packet-rate\=\(uint\)305\,\ have-sr\=\(boolean\)true\,\ sr-ntptime\=\(guint64\)9487535312851551098\,\ sr-rtptime\=\(uint\)3278000628\,\ sr-octet-count\=\(uint\)3737070\,\ sr-packet-count\=\(uint\)3021\,\ sent-rb\=\(boolean\)true\,\ sent-rb-fractionlost\=\(uint\)0\,\ sent-rb-packetslost\=\(int\)0\,\ sent-rb-exthighestseq\=\(uint\)12064\,\ sent-rb-jitter\=\(uint\)377\,\ sent-rb-lsr\=\(uint\)2132382845\,\ sent-rb-dlsr\=\(uint\)437151\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\;" >, rtx-count=(uint)0, recv-rtx-req-count=(uint)0, sent-rtx-req-count=(uint)0;
+10:59:10.852 [ERR] 0:01:03.178295100      11944      13148 WARN                 rtspsrc gstrtspsrc.c:4089:on_timeout_common:<rtspsrc0> source 2ff9934c, stream 2ff9934c in session 0 timed out
+10:59:10.853 [OUT] /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0/GstRtpBin:manager/GstRtpSession:rtpsession0: stats = application/x-rtp-session-stats, rtx-drop-count=(uint)0, sent-nack-count=(uint)0, recv-nack-count=(uint)0, source-stats=(GValueArray)< "application/x-rtp-source-stats\,\ ssrc\=\(uint\)3906224189\,\ internal\=\(boolean\)true\,\ validated\=\(boolean\)true\,\ received-bye\=\(boolean\)false\,\ is-csrc\=\(boolean\)false\,\ is-sender\=\(boolean\)false\,\ seqnum-base\=\(int\)-1\,\ clock-rate\=\(int\)-1\,\ octets-sent\=\(guint64\)0\,\ packets-sent\=\(guint64\)0\,\ octets-received\=\(guint64\)0\,\ packets-received\=\(guint64\)0\,\ bytes-received\=\(guint64\)0\,\ bitrate\=\(guint64\)0\,\ packets-lost\=\(int\)0\,\ jitter\=\(uint\)0\,\ sent-pli-count\=\(uint\)0\,\ recv-pli-count\=\(uint\)0\,\ sent-fir-count\=\(uint\)0\,\ recv-fir-count\=\(uint\)0\,\ sent-nack-count\=\(uint\)0\,\ recv-nack-count\=\(uint\)0\,\ recv-packet-rate\=\(uint\)0\,\ have-sr\=\(boolean\)false\,\ sr-ntptime\=\(guint64\)0\,\ sr-rtptime\=\(uint\)0\,\ sr-octet-count\=\(uint\)0\,\ sr-packet-count\=\(uint\)0\,\ have-rb\=\(boolean\)false\,\ rb-ssrc\=\(uint\)0\,\ rb-fractionlost\=\(uint\)0\,\ rb-packetslost\=\(int\)0\,\ rb-exthighestseq\=\(uint\)0\,\ rb-jitter\=\(uint\)0\,\ rb-lsr\=\(uint\)0\,\ rb-dlsr\=\(uint\)0\,\ rb-round-trip\=\(uint\)0\,\ received-rr\=\(int\)\{\ \ \}\;" >, rtx-count=(uint)0, recv-rtx-req-count=(uint)0, sent-rtx-req-count=(uint)0;
+10:59:10.853 [OUT] Got EOS from element "pipeline0".
+10:59:10.853 [OUT] EOS received - stopping pipeline...
+10:59:10.854 [OUT] Execution ended after 0:01:02.396216500
+10:59:10.854 [OUT] Setting pipeline to NULL ...
+10:59:10.869 [ERR] 0:01:03.194358000      11944       3980 WARN                 rtspsrc gstrtspsrc.c:7223:gst_rtsp_src_receive_response:<rtspsrc0> error: Could not receive message. (System error)
+10:59:10.873 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not read from resource.
+10:59:10.873 [ERR] Additional debug info:
+10:59:10.873 [ERR] ../gst/rtsp/gstrtspsrc.c(7223): gst_rtsp_src_receive_response (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:10.873 [ERR] Could not receive message. (System error)
+10:59:10.874 [ERR] 0:01:03.199482300      11944       3980 WARN                 rtspsrc gstrtspsrc.c:7326:gst_rtspsrc_try_send:<rtspsrc0> error: Could not receive message. (System error)
+10:59:10.878 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not read from resource.
+10:59:10.878 [ERR] Additional debug info:
+10:59:10.878 [ERR] ../gst/rtsp/gstrtspsrc.c(7326): gst_rtspsrc_try_send (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:10.878 [ERR] Could not receive message. (System error)
+10:59:10.878 [ERR] 0:01:03.204142100      11944       3980 WARN                 rtspsrc gstrtspsrc.c:10043:gst_rtspsrc_pause:<rtspsrc0> error: Could not send message. (System error)
+10:59:10.883 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not write to resource.
+10:59:10.883 [ERR] Additional debug info:
+10:59:10.883 [ERR] ../gst/rtsp/gstrtspsrc.c(10043): gst_rtspsrc_pause (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:10.883 [ERR] Could not send message. (System error)
+10:59:10.884 [ERR] 0:01:03.210333700      11944       3980 WARN                 default gstrtspconnection.c:1558:writev_bytes: Error sending message: 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다.
+10:59:10.904 [OUT] Freeing pipeline ...
+10:59:10.935 === gst-launch exited, code=1 ===
+10:59:13.147 === GStreamer V10.8 launch ===
+10:59:13.147 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:59:13.147 PROXY_BYPASS: True
+10:59:13.147 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:59:13.147 
+10:59:13.211 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:59:13.211 [OUT] Setting pipeline to PAUSED ...
+10:59:13.410 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:59:13.410 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:59:13.412 [OUT] Pipeline is live and does not need PREROLL ...
+10:59:13.412 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:59:13.412 [OUT] Progress: (open) Opening Stream
+10:59:13.412 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:59:13.412 [OUT] Pipeline is PREROLLED ...
+10:59:13.412 [OUT] Prerolled, waiting for progress to finish...
+10:59:15.523 [ERR] 0:00:02.345020500       9232      10640 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+10:59:15.523 [ERR] 0:00:02.345724500       9232      10640 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+10:59:15.524 [ERR] 0:00:02.346205500       9232      10640 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+10:59:15.527 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+10:59:15.527 [ERR] Additional debug info:
+10:59:15.527 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:15.527 [ERR] Failed to connect. (Generic error)
+10:59:15.527 [ERR] ERROR: pipeline doesn't want to preroll.
+10:59:15.527 [ERR] 0:00:02.349607400       9232      10640 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+10:59:15.528 [ERR] 0:00:02.350030800       9232      10640 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+10:59:15.528 [OUT] Setting pipeline to NULL ...
+10:59:15.530 [OUT] Freeing pipeline ...
+10:59:15.577 === gst-launch exited, code=1 ===
+10:59:17.725 === GStreamer V10.8 launch ===
+10:59:17.725 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:59:17.725 PROXY_BYPASS: True
+10:59:17.725 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:59:17.725 
+10:59:17.816 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:59:17.816 [OUT] Setting pipeline to PAUSED ...
+10:59:18.009 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:59:18.009 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:59:18.013 [OUT] Pipeline is live and does not need PREROLL ...
+10:59:18.013 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:59:18.014 [OUT] Progress: (open) Opening Stream
+10:59:18.014 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:59:18.014 [OUT] Pipeline is PREROLLED ...
+10:59:18.014 [OUT] Prerolled, waiting for progress to finish...
+10:59:20.111 [ERR] 0:00:02.351218900       5660       9068 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+10:59:20.111 [ERR] 0:00:02.351754500       5660       9068 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+10:59:20.111 [ERR] 0:00:02.352142700       5660       9068 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+10:59:20.114 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+10:59:20.114 [ERR] Additional debug info:
+10:59:20.114 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:20.114 [ERR] Failed to connect. (Generic error)
+10:59:20.114 [ERR] ERROR: pipeline doesn't want to preroll.
+10:59:20.114 [ERR] 0:00:02.355107900       5660       9068 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+10:59:20.114 [ERR] 0:00:02.355478400       5660       9068 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+10:59:20.115 [OUT] Setting pipeline to NULL ...
+10:59:20.118 [OUT] Freeing pipeline ...
+10:59:20.165 === gst-launch exited, code=1 ===
+10:59:22.245 === GStreamer V10.8 launch ===
+10:59:22.245 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:59:22.245 PROXY_BYPASS: True
+10:59:22.245 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:59:22.245 
+10:59:22.337 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:59:22.337 [OUT] Setting pipeline to PAUSED ...
+10:59:22.531 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:59:22.531 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:59:22.537 [OUT] Pipeline is live and does not need PREROLL ...
+10:59:22.537 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:59:22.537 [OUT] Progress: (open) Opening Stream
+10:59:22.537 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:59:22.537 [OUT] Pipeline is PREROLLED ...
+10:59:22.537 [OUT] Prerolled, waiting for progress to finish...
+10:59:24.625 [ERR] 0:00:02.344863000      10452      14028 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+10:59:24.625 [ERR] 0:00:02.345353600      10452      14028 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+10:59:24.625 [ERR] 0:00:02.345722900      10452      14028 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+10:59:24.628 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+10:59:24.628 [ERR] Additional debug info:
+10:59:24.628 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:24.628 [ERR] Failed to connect. (Generic error)
+10:59:24.628 [ERR] ERROR: pipeline doesn't want to preroll.
+10:59:24.628 [ERR] 0:00:02.348473700      10452      14028 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+10:59:24.628 [ERR] 0:00:02.348838300      10452      14028 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+10:59:24.629 [OUT] Setting pipeline to NULL ...
+10:59:24.632 [OUT] Freeing pipeline ...
+10:59:24.679 === gst-launch exited, code=1 ===
+10:59:26.788 === GStreamer V10.8 launch ===
+10:59:26.788 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:59:26.788 PROXY_BYPASS: True
+10:59:26.788 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:59:26.788 
+10:59:26.871 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:59:26.871 [OUT] Setting pipeline to PAUSED ...
+10:59:27.075 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:59:27.075 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:59:27.079 [OUT] Pipeline is live and does not need PREROLL ...
+10:59:27.080 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:59:27.080 [OUT] Progress: (open) Opening Stream
+10:59:27.080 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:59:27.080 [OUT] Pipeline is PREROLLED ...
+10:59:27.080 [OUT] Prerolled, waiting for progress to finish...
+10:59:29.160 [ERR] 0:00:02.336877400       2108      10512 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+10:59:29.161 [ERR] 0:00:02.337416100       2108      10512 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+10:59:29.161 [ERR] 0:00:02.337807900       2108      10512 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+10:59:29.164 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+10:59:29.164 [ERR] Additional debug info:
+10:59:29.164 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:29.164 [ERR] Failed to connect. (Generic error)
+10:59:29.164 [ERR] ERROR: pipeline doesn't want to preroll.
+10:59:29.164 [OUT] Setting pipeline to NULL ...
+10:59:29.164 [ERR] 0:00:02.340813200       2108      10512 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+10:59:29.167 [OUT] Freeing pipeline ...
+10:59:29.198 === gst-launch exited, code=1 ===
+10:59:31.340 === GStreamer V10.8 launch ===
+10:59:31.340 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:59:31.340 PROXY_BYPASS: True
+10:59:31.340 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:59:31.340 
+10:59:31.422 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:59:31.422 [OUT] Setting pipeline to PAUSED ...
+10:59:31.623 [OUT] Pipeline is live and does not need PREROLL ...
+10:59:31.624 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:59:31.624 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:59:31.624 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:59:31.624 [OUT] Progress: (open) Opening Stream
+10:59:31.624 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:59:31.624 [OUT] Pipeline is PREROLLED ...
+10:59:31.624 [OUT] Prerolled, waiting for progress to finish...
+10:59:33.705 [ERR] 0:00:02.331935800       9164       6080 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+10:59:33.706 [ERR] 0:00:02.332407300       9164       6080 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+10:59:33.706 [ERR] 0:00:02.332733900       9164       6080 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+10:59:33.708 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+10:59:33.708 [ERR] Additional debug info:
+10:59:33.708 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:33.708 [ERR] Failed to connect. (Generic error)
+10:59:33.708 [ERR] ERROR: pipeline doesn't want to preroll.
+10:59:33.709 [ERR] 0:00:02.335435100       9164       6080 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+10:59:33.709 [ERR] 0:00:02.335847500       9164       6080 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+10:59:33.709 [OUT] Setting pipeline to NULL ...
+10:59:33.718 [OUT] Freeing pipeline ...
+10:59:33.763 === gst-launch exited, code=1 ===
+10:59:35.897 === GStreamer V10.8 launch ===
+10:59:35.897 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:59:35.897 PROXY_BYPASS: True
+10:59:35.897 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:59:35.897 
+10:59:35.978 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:59:35.978 [OUT] Setting pipeline to PAUSED ...
+10:59:36.181 [OUT] Pipeline is live and does not need PREROLL ...
+10:59:36.181 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:59:36.181 [OUT] Progress: (open) Opening Stream
+10:59:36.181 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:59:36.181 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:59:36.181 [OUT] Pipeline is PREROLLED ...
+10:59:36.181 [OUT] Prerolled, waiting for progress to finish...
+10:59:36.181 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:59:38.270 [ERR] 0:00:02.338717700      10160       5180 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+10:59:38.270 [ERR] 0:00:02.339258900      10160       5180 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+10:59:38.270 [ERR] 0:00:02.339545500      10160       5180 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+10:59:38.273 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+10:59:38.273 [ERR] Additional debug info:
+10:59:38.273 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:38.273 [ERR] Failed to connect. (Generic error)
+10:59:38.273 [ERR] ERROR: pipeline doesn't want to preroll.
+10:59:38.273 [ERR] 0:00:02.342457700      10160       5180 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+10:59:38.273 [OUT] Setting pipeline to NULL ...
+10:59:38.273 [ERR] 0:00:02.342781800      10160       5180 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+10:59:38.276 [OUT] Freeing pipeline ...
+10:59:38.324 === gst-launch exited, code=1 ===
+10:59:40.491 === GStreamer V10.8 launch ===
+10:59:40.491 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:59:40.491 PROXY_BYPASS: True
+10:59:40.491 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:59:40.491 
+10:59:40.583 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:59:40.583 [OUT] Setting pipeline to PAUSED ...
+10:59:40.783 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:59:40.783 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:59:40.787 [OUT] Pipeline is live and does not need PREROLL ...
+10:59:40.788 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:59:40.788 [OUT] Progress: (open) Opening Stream
+10:59:40.788 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:59:40.788 [OUT] Pipeline is PREROLLED ...
+10:59:40.788 [OUT] Prerolled, waiting for progress to finish...
+10:59:42.883 [ERR] 0:00:02.356414000        564      10032 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+10:59:42.883 [ERR] 0:00:02.356933100        564      10032 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+10:59:42.883 [ERR] 0:00:02.357263100        564      10032 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+10:59:42.885 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+10:59:42.886 [ERR] Additional debug info:
+10:59:42.886 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:42.886 [ERR] Failed to connect. (Generic error)
+10:59:42.886 [ERR] ERROR: pipeline doesn't want to preroll.
+10:59:42.886 [ERR] 0:00:02.359921000        564      10032 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+10:59:42.886 [ERR] 0:00:02.360226100        564      10032 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+10:59:42.886 [OUT] Setting pipeline to NULL ...
+10:59:42.890 [OUT] Freeing pipeline ...
+10:59:42.924 === gst-launch exited, code=1 ===
+10:59:45.061 === GStreamer V10.8 launch ===
+10:59:45.061 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:59:45.061 PROXY_BYPASS: True
+10:59:45.061 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:59:45.061 
+10:59:45.144 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:59:45.144 [OUT] Setting pipeline to PAUSED ...
+10:59:45.342 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:59:45.342 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:59:45.347 [OUT] Pipeline is live and does not need PREROLL ...
+10:59:45.347 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:59:45.347 [OUT] Progress: (open) Opening Stream
+10:59:45.347 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:59:45.347 [OUT] Pipeline is PREROLLED ...
+10:59:45.347 [OUT] Prerolled, waiting for progress to finish...
+10:59:53.091 [WATCHDOG] RTSP connection stalled for 8 sec. Restarting gst-launch.
+10:59:53.158 === gst-launch exited ===
+10:59:53.158 === gst-launch exited ===
+10:59:55.622 === GStreamer V10.8 launch ===
+10:59:55.622 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+10:59:55.622 PROXY_BYPASS: True
+10:59:55.622 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+10:59:55.622 
+10:59:55.698 [OUT] Use Windows high-resolution clock, precision: 1 ms
+10:59:55.698 [OUT] Setting pipeline to PAUSED ...
+10:59:55.907 [OUT] Pipeline is live and does not need PREROLL ...
+10:59:55.907 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+10:59:55.907 [OUT] Progress: (open) Opening Stream
+10:59:55.908 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+10:59:55.908 [OUT] Pipeline is PREROLLED ...
+10:59:55.908 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+10:59:55.908 [OUT] Prerolled, waiting for progress to finish...
+10:59:55.908 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+10:59:58.009 [ERR] 0:00:02.352058900       9704       7504 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+10:59:58.010 [ERR] 0:00:02.352465200       9704       7504 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+10:59:58.010 [ERR] 0:00:02.352922000       9704       7504 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+10:59:58.013 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+10:59:58.013 [ERR] Additional debug info:
+10:59:58.013 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+10:59:58.013 [ERR] Failed to connect. (Generic error)
+10:59:58.013 [ERR] ERROR: pipeline doesn't want to preroll.
+10:59:58.013 [ERR] 0:00:02.355879800       9704       7504 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+10:59:58.013 [ERR] 0:00:02.356284600       9704       7504 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+10:59:58.013 [OUT] Setting pipeline to NULL ...
+10:59:58.023 [OUT] Freeing pipeline ...
+10:59:58.054 === gst-launch exited, code=1 ===
+11:00:00.208 === GStreamer V10.8 launch ===
+11:00:00.208 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+11:00:00.208 PROXY_BYPASS: True
+11:00:00.208 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+11:00:00.208 
+11:00:00.261 [OUT] Use Windows high-resolution clock, precision: 1 ms
+11:00:00.261 [OUT] Setting pipeline to PAUSED ...
+11:00:00.445 [OUT] Pipeline is live and does not need PREROLL ...
+11:00:00.446 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+11:00:00.446 [OUT] Progress: (open) Opening Stream
+11:00:00.446 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+11:00:00.446 [OUT] Pipeline is PREROLLED ...
+11:00:00.446 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+11:00:00.446 [OUT] Prerolled, waiting for progress to finish...
+11:00:00.446 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+11:00:02.559 [ERR] 0:00:02.332655600       9352      11824 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+11:00:02.560 [ERR] 0:00:02.333133400       9352      11824 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+11:00:02.560 [ERR] 0:00:02.333493800       9352      11824 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+11:00:02.562 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+11:00:02.562 [ERR] Additional debug info:
+11:00:02.562 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+11:00:02.562 [ERR] Failed to connect. (Generic error)
+11:00:02.562 [ERR] ERROR: pipeline doesn't want to preroll.
+11:00:02.562 [OUT] Setting pipeline to NULL ...
+11:00:02.563 [ERR] 0:00:02.336256100       9352      11824 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+11:00:02.571 [OUT] Freeing pipeline ...
+11:00:02.603 === gst-launch exited, code=1 ===
+11:00:04.732 === GStreamer V10.8 launch ===
+11:00:04.732 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+11:00:04.732 PROXY_BYPASS: True
+11:00:04.732 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+11:00:04.732 
+11:00:04.806 [OUT] Use Windows high-resolution clock, precision: 1 ms
+11:00:04.806 [OUT] Setting pipeline to PAUSED ...
+11:00:05.009 [OUT] Pipeline is live and does not need PREROLL ...
+11:00:05.009 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+11:00:05.009 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+11:00:05.009 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+11:00:05.009 [OUT] Progress: (open) Opening Stream
+11:00:05.009 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+11:00:05.009 [OUT] Pipeline is PREROLLED ...
+11:00:05.009 [OUT] Prerolled, waiting for progress to finish...
+11:00:07.088 [ERR] 0:00:02.320424200       6344       9600 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+11:00:07.088 [ERR] 0:00:02.320967800       6344       9600 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+11:00:07.089 [ERR] 0:00:02.321385600       6344       9600 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+11:00:07.091 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+11:00:07.091 [ERR] Additional debug info:
+11:00:07.091 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+11:00:07.091 [ERR] Failed to connect. (Generic error)
+11:00:07.091 [ERR] ERROR: pipeline doesn't want to preroll.
+11:00:07.092 [ERR] 0:00:02.324172200       6344       9600 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+11:00:07.092 [ERR] 0:00:02.324573600       6344       9600 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+11:00:07.092 [OUT] Setting pipeline to NULL ...
+11:00:07.100 [OUT] Freeing pipeline ...
+11:00:07.148 === gst-launch exited, code=1 ===
+11:00:09.273 === GStreamer V10.8 launch ===
+11:00:09.273 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+11:00:09.273 PROXY_BYPASS: True
+11:00:09.273 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+11:00:09.273 
+11:00:09.338 [OUT] Use Windows high-resolution clock, precision: 1 ms
+11:00:09.338 [OUT] Setting pipeline to PAUSED ...
+11:00:09.526 [OUT] Pipeline is live and does not need PREROLL ...
+11:00:09.526 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+11:00:09.526 [OUT] Progress: (open) Opening Stream
+11:00:09.526 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+11:00:09.526 [OUT] Pipeline is PREROLLED ...
+11:00:09.526 [OUT] Prerolled, waiting for progress to finish...
+11:00:09.526 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+11:00:09.527 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+11:00:11.609 [ERR] 0:00:02.304413500       3372       9276 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+11:00:11.610 [ERR] 0:00:02.305190200       3372       9276 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+11:00:11.610 [ERR] 0:00:02.305590900       3372       9276 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+11:00:11.613 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+11:00:11.613 [ERR] Additional debug info:
+11:00:11.613 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+11:00:11.613 [ERR] Failed to connect. (Generic error)
+11:00:11.613 [ERR] ERROR: pipeline doesn't want to preroll.
+11:00:11.613 [ERR] 0:00:02.308545500       3372       9276 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+11:00:11.614 [ERR] 0:00:02.309225900       3372       9276 WARN                 rtspsrc gstrtspsrc.c:6916:gst_rtspsrc_loop:<rtspsrc0> we are not connected
+11:00:11.614 [OUT] Setting pipeline to NULL ...
+11:00:11.620 [OUT] Freeing pipeline ...
+11:00:11.651 === gst-launch exited, code=1 ===
