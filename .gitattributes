@@ -1,0 +1,7 @@
+* text=auto
+*.cs text eol=crlf
+*.md text eol=lf
+*.txt text eol=crlf
+*.zip binary
+*.docx binary
+*.pdf binary
