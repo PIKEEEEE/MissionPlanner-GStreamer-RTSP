@@ -1263,3 +1263,183 @@ namespace GStreamerV109
         {
             if (String.IsNullOrWhiteSpace(line))
                 return;
+
+            string upper = line.ToUpperInvariant();
+            string codec = "";
+
+            if (upper.IndexOf("ENCODING-NAME=(STRING)H264") >= 0)
+                codec = "H264";
+            else if (upper.IndexOf("ENCODING-NAME=(STRING)H265") >= 0 ||
+                     upper.IndexOf("ENCODING-NAME=(STRING)HEVC") >= 0)
+                codec = "H265";
+            else if (upper.IndexOf("ENCODING-NAME=(STRING)VP9") >= 0)
+                codec = "VP9";
+            else if (upper.IndexOf("ENCODING-NAME=(STRING)VP8") >= 0)
+                codec = "VP8";
+
+            if (!String.IsNullOrWhiteSpace(codec) &&
+                !String.Equals(detectedCodec, codec, StringComparison.OrdinalIgnoreCase))
+            {
+                detectedCodec = codec;
+                AppendGstLog("[INFO] RTP codec detected: " + codec);
+            }
+
+            string payload = ExtractCapsNumber(line, "payload=(int)");
+            if (!String.IsNullOrWhiteSpace(payload))
+                detectedPayload = payload;
+
+            string clock = ExtractCapsNumber(line, "clock-rate=(int)");
+            if (!String.IsNullOrWhiteSpace(clock))
+                detectedClockRate = clock;
+        }
+
+        string ExtractCapsNumber(string line, string markerText)
+        {
+            int p = line.IndexOf(markerText, StringComparison.OrdinalIgnoreCase);
+            if (p < 0)
+                return "";
+
+            p += markerText.Length;
+            StringBuilder b = new StringBuilder();
+
+            while (p < line.Length && Char.IsDigit(line[p]))
+            {
+                b.Append(line[p]);
+                p++;
+            }
+
+            return b.ToString();
+        }
+
+        string DetectedStreamText()
+        {
+            return detectedCodec +
+                " / payload=" + detectedPayload +
+                " / clock=" + detectedClockRate;
+        }
+
+        // ============================================================
+        // V10.4 - GStreamer runtime log
+        // ============================================================
+
+        void ClearGstLog()
+        {
+            lock (logLock)
+            {
+                gstLog.Length = 0;
+            }
+        }
+
+        void AppendGstLog(string line)
+        {
+            lock (logLock)
+            {
+                gstLog.AppendLine(
+                    DateTime.Now.ToString("HH:mm:ss.fff") +
+                    " " + line);
+
+                if (gstLog.Length > MaxLogChars)
+                {
+                    int remove =
+                        gstLog.Length - MaxLogChars;
+
+                    gstLog.Remove(0, remove);
+                }
+            }
+        }
+
+        string GetGstLog()
+        {
+            lock (logLock)
+            {
+                return gstLog.ToString();
+            }
+        }
+
+        void ShowLog()
+        {
+            Form f = new Form();
+            f.Text = "GStreamer V10.9 로그";
+            f.StartPosition = FormStartPosition.CenterScreen;
+            f.ClientSize = new System.Drawing.Size(1000, 650);
+
+            TextBox box = new TextBox();
+            box.Dock = DockStyle.Fill;
+            box.Multiline = true;
+            box.ReadOnly = true;
+            box.ScrollBars = ScrollBars.Both;
+            box.WordWrap = false;
+            box.Font = new System.Drawing.Font(
+                "Consolas",
+                9.0f);
+            box.Text = GetGstLog();
+
+            Button refresh = new Button();
+            refresh.Text = "새로고침";
+            refresh.Dock = DockStyle.Bottom;
+            refresh.Height = 34;
+            refresh.Click += delegate
+            {
+                box.Text = GetGstLog();
+                box.SelectionStart = box.Text.Length;
+                box.ScrollToCaret();
+            };
+
+            Button copy = new Button();
+            copy.Text = "로그 전체 복사";
+            copy.Dock = DockStyle.Bottom;
+            copy.Height = 34;
+            copy.Click += delegate
+            {
+                try
+                {
+                    Clipboard.SetText(GetGstLog());
+                }
+                catch { }
+            };
+
+            f.Controls.Add(box);
+            f.Controls.Add(copy);
+            f.Controls.Add(refresh);
+
+            box.SelectionStart = box.Text.Length;
+            box.ScrollToCaret();
+
+            f.Show();
+        }
+
+        // ============================================================
+        // Settings persistence
+        // ============================================================
+
+        void LoadCfg()
+        {
+            // V10 값이 없으면 V9 값을 우선 이어받습니다.
+            url = S10("url", S9("url", url));
+            proto = S10("proto", S9("proto", proto)).ToUpperInvariant();
+
+            if (proto != "AUTO" &&
+                proto != "UDP" &&
+                proto != "TCP")
+            {
+                proto = "UDP";
+            }
+
+            latency = I10("latency", I9("latency", latency, 0, 5000), 0, 5000);
+            buffers = I10("buffers", I9("buffers", buffers, 1, 60), 1, 60);
+            leaky = I10("leaky", I9("leaky", leaky, 0, 2), 0, 2);
+            tcpTimeout = I10("tcp", I9("tcp", tcpTimeout, 1, 60), 1, 60);
+            udpTimeoutSec = I10("udp_timeout", 5, 1, 60);
+            retryDelay = I10("retry", I9("retry", retryDelay, 1, 30), 1, 30);
+            connectWatchdogSec = I10("connect_watchdog", 8, 3, 60);
+
+            retrans = B10("retrans", B9("retrans", retrans));
+            doRtcp = B10("do_rtcp", doRtcp);
+            rtspKeepAlive = B10("rtsp_keep_alive", rtspKeepAlive);
+            proxyBypass = B10("proxy_bypass", proxyBypass);
+            autoRetry = B10("auto", B9("auto", autoRetry));
+
+            lossMode = I10("loss_mode", 0, 0, 1);
+            detectedCodec = S10("detected_codec", "미감지");
+            detectedPayload = S10("detected_payload", "-");
+            detectedClockRate = S10("detected_clock", "-");
