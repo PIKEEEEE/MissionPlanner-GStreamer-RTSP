@@ -1,0 +1,27 @@
+09:32:28.488 === GStreamer V10.5 launch ===
+09:32:28.488 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+09:32:28.488 PROXY_BYPASS: True
+09:32:28.488 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=120 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=0 do-retransmission=true ! application/x-rtp,media=video,encoding-name=H264 ! rtph264depay wait-for-keyframe=true request-keyframe=true ! decodebin3 ! queue max-size-buffers=3 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+09:32:28.488 
+09:32:28.543 [OUT] Use Windows high-resolution clock, precision: 1 ms
+09:32:28.543 [OUT] Setting pipeline to PAUSED ...
+09:32:28.739 [OUT] Pipeline is live and does not need PREROLL ...
+09:32:28.739 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)47858, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+09:32:28.739 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+09:32:28.739 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+09:32:28.739 [OUT] Progress: (open) Opening Stream
+09:32:28.739 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+09:32:28.739 [OUT] Pipeline is PREROLLED ...
+09:32:28.739 [OUT] Prerolled, waiting for progress to finish...
+09:32:30.821 [ERR] 0:00:02.312849300      11864       2976 ERROR                default gstrtspconnection.c:1299:gst_rtsp_connection_connect_with_response_usec: failed to connect: Could not connect to 192.168.50.25: 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다.
+09:32:30.821 [ERR] 0:00:02.313439200      11864       2976 ERROR                rtspsrc gstrtspsrc.c:5909:gst_rtsp_conninfo_connect:<rtspsrc0> Could not connect to server. (Generic error)
+09:32:30.822 [ERR] 0:00:02.313842900      11864       2976 WARN                 rtspsrc gstrtspsrc.c:9130:gst_rtspsrc_retrieve_sdp:<rtspsrc0> error: Failed to connect. (Generic error)
+09:32:30.824 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not open resource for reading and writing.
+09:32:30.824 [ERR] Additional debug info:
+09:32:30.824 [ERR] ../gst/rtsp/gstrtspsrc.c(9130): gst_rtspsrc_retrieve_sdp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+09:32:30.824 [ERR] Failed to connect. (Generic error)
+09:32:30.824 [ERR] ERROR: pipeline doesn't want to preroll.
+09:32:30.824 [OUT] Setting pipeline to NULL ...
+09:32:30.825 [ERR] 0:00:02.317324300      11864       2976 WARN                 rtspsrc gstrtspsrc.c:9216:gst_rtspsrc_open:<rtspsrc0> can't get sdp
+09:32:30.828 [OUT] Freeing pipeline ...
+09:32:30.875 === gst-launch exited, code=1 ===
