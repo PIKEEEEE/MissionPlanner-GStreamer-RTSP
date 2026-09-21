@@ -1082,3 +1082,184 @@ namespace GStreamerV109
                     if (oe.Data != null)
                     {
                         ObserveRtspLine(oe.Data);
+
+                        InspectCapsLine(oe.Data);
+                        AppendGstLog("[OUT] " + oe.Data);
+                    }
+                };
+
+                gst.ErrorDataReceived += delegate(object es, DataReceivedEventArgs ee)
+                {
+                    if (ee.Data != null)
+                    {
+                        ObserveRtspLine(ee.Data);
+                        InspectCapsLine(ee.Data);
+                        AppendGstLog("[ERR] " + ee.Data);
+                    }
+                };
+
+                gst.Exited += delegate
+                {
+                    try
+                    {
+                        if (host != null && !host.IsDisposed)
+                        {
+                            host.BeginInvoke((MethodInvoker)delegate
+                            {
+                                videoWnd = IntPtr.Zero;
+                                rtspPlayStarted = false;
+                                gstLaunchAt = DateTime.MinValue;
+
+                                try
+                                {
+                                    AppendGstLog(
+                                        "=== gst-launch exited, code=" +
+                                        gst.ExitCode + " ===");
+                                }
+                                catch
+                                {
+                                    AppendGstLog("=== gst-launch exited ===");
+                                }
+
+                                if (active && !manualStop)
+                                {
+                                    if (!autoRetry)
+                                    {
+                                        SetStatus(
+                                            "영상 끊김 - 자동 재연결 OFF");
+                                    }
+                                    else if (attemptReachedPlay)
+                                    {
+                                        ScheduleReconnectAfterDrop(
+                                            "gst-launch exited after PLAY");
+                                    }
+                                    else
+                                    {
+                                        ScheduleReconnectAfterFailedAttempt(
+                                            "gst-launch exited before PLAY");
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    catch { }
+                };
+
+                rtspPlayStarted = false;
+                attemptReachedPlay = false;
+                gstLaunchAt = DateTime.Now;
+
+                gst.Start();
+                gst.BeginOutputReadLine();
+                gst.BeginErrorReadLine();
+
+                videoWnd = IntPtr.Zero;
+                SetStatus(
+                    "RTSP 연결 중... (watchdog " +
+                    connectWatchdogSec +
+                    "초)");
+            }
+            catch (Exception ex)
+            {
+                gst = null;
+
+                AppendGstLog(
+                    "[RECONNECT] StartGst exception: " +
+                    ex.GetType().Name +
+                    " - " +
+                    ex.Message);
+
+                ScheduleReconnectAfterFailedAttempt(
+                    "StartGst exception");
+            }
+        }
+
+        bool Running()
+        {
+            try
+            {
+                return gst != null && !gst.HasExited;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        void KillGst()
+        {
+            videoWnd = IntPtr.Zero;
+            rtspPlayStarted = false;
+            gstLaunchAt = DateTime.MinValue;
+
+            if (gst == null)
+                return;
+
+            try
+            {
+                if (!gst.HasExited)
+                {
+                    try { gst.Kill(); } catch { }
+                    try { gst.WaitForExit(1000); } catch { }
+                }
+            }
+            catch { }
+
+            try { gst.Dispose(); } catch { }
+            gst = null;
+
+            if (manualStop)
+                attemptReachedPlay = false;
+        }
+
+        void SetStatus(string text)
+        {
+            if (status == null || status.IsDisposed)
+                return;
+
+            status.Text = text;
+            status.Visible = !String.IsNullOrEmpty(text);
+            status.BringToFront();
+        }
+
+        // ============================================================
+        // V10.9 - RTSP connection state observer
+        // ============================================================
+
+        void ObserveRtspLine(string line)
+        {
+            if (String.IsNullOrWhiteSpace(line))
+                return;
+
+            if (line.IndexOf(
+                    "Sent PLAY request",
+                    StringComparison.OrdinalIgnoreCase) >= 0 ||
+                line.IndexOf(
+                    "Setting pipeline to PLAYING",
+                    StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                if (!rtspPlayStarted)
+                {
+                    rtspPlayStarted = true;
+                    attemptReachedPlay = true;
+                    reconnectFailureCount = 0;
+                    nextRetry = DateTime.MinValue;
+
+                    AppendGstLog(
+                        "[RECONNECT] RTSP PLAY reached. " +
+                        "Backoff reset.");
+
+                    AppendGstLog(
+                        "[WATCHDOG] Connect watchdog disarmed.");
+                }
+            }
+        }
+
+        // ============================================================
+        // V10.9 - RTP caps auto detection (read-only, never forces codec)
+        // ============================================================
+
+        void InspectCapsLine(string line)
+        {
+            if (String.IsNullOrWhiteSpace(line))
+                return;
