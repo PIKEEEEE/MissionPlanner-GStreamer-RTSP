@@ -1,0 +1,127 @@
+11:06:36.146 === GStreamer V10.9 launch ===
+11:06:36.146 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+11:06:36.146 PROXY_BYPASS: True
+11:06:36.146 VERBOSE_STATS: OFF
+11:06:36.146 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+11:06:36.146 
+11:06:36.200 [OUT] Use Windows high-resolution clock, precision: 1 ms
+11:06:36.200 [OUT] Setting pipeline to PAUSED ...
+11:06:36.390 [OUT] Pipeline is live and does not need PREROLL ...
+11:06:36.390 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+11:06:36.390 [OUT] Progress: (open) Opening Stream
+11:06:36.390 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+11:06:36.390 [OUT] Pipeline is PREROLLED ...
+11:06:36.390 [OUT] Prerolled, waiting for progress to finish...
+11:06:36.390 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+11:06:36.390 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+11:06:36.405 [OUT] Progress: (open) Retrieving server options
+11:06:36.420 [OUT] Progress: (open) Retrieving media info
+11:06:37.917 [OUT] Progress: (request) SETUP stream 0
+11:06:37.946 [OUT] Progress: (open) Opened Stream
+11:06:37.947 [RECONNECT] RTSP PLAY reached. Backoff reset.
+11:06:37.947 [WATCHDOG] Connect watchdog disarmed.
+11:06:37.947 [OUT] Setting pipeline to PLAYING ...
+11:06:37.947 [OUT] New clock: GstSystemClock
+11:06:37.947 [OUT] Progress: (request) Sending PLAY request
+11:06:37.947 [OUT] Redistribute latency...
+11:06:37.947 [OUT] Progress: (request) Sending PLAY request
+11:06:37.948 [OUT] Redistribute latency...
+11:06:37.963 [OUT] Progress: (request) Sent PLAY request
+11:06:37.965 [OUT] Redistribute latency...
+11:06:38.002 [OUT] Redistribute latency...
+11:06:38.018 [OUT] Redistribute latency...
+11:06:38.160 [OUT] Redistribute latency...
+11:06:40.261 [OUT] Redistribute latency...
+11:09:57.234 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not read from resource.
+11:09:57.234 [ERR] Additional debug info:
+11:09:57.234 [ERR] ../gst/rtsp/gstrtspsrc.c(6589): gst_rtspsrc_loop_udp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+11:09:57.234 [ERR] Could not receive message. (System error)
+11:09:57.234 [OUT] WARNING: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not read from resource.
+11:09:57.234 [OUT] Additional debug info:
+11:09:57.234 [OUT] ../gst/rtsp/gstrtspsrc.c(6521): gst_rtspsrc_loop_udp (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+11:09:57.234 [OUT] Unhandled return value -7.
+11:09:57.234 [OUT] Execution ended after 0:03:19.288075700
+11:09:57.234 [OUT] Setting pipeline to NULL ...
+11:09:57.239 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Internal data stream error.
+11:09:57.239 [ERR] Additional debug info:
+11:09:57.239 [ERR] ../gst/rtsp/gstrtspsrc.c(6941): gst_rtspsrc_loop (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+11:09:57.239 [ERR] streaming stopped, reason error (-5)
+11:09:57.239 [ERR] Details:
+11:09:57.239 [ERR] details, flow-return=(int)-5;
+11:09:57.248 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not write to resource.
+11:09:57.248 [ERR] Additional debug info:
+11:09:57.248 [ERR] ../gst/rtsp/gstrtspsrc.c(7312): gst_rtspsrc_try_send (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+11:09:57.248 [ERR] Could not send message. (Received end-of-file)
+11:09:57.255 [ERR] ERROR: from element /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0: Could not write to resource.
+11:09:57.255 [ERR] Additional debug info:
+11:09:57.255 [ERR] ../gst/rtsp/gstrtspsrc.c(10043): gst_rtspsrc_pause (): /GstPipeline:pipeline0/GstRTSPSrc:rtspsrc0:
+11:09:57.255 [ERR] Could not send message. (Received end-of-file)
+11:09:57.276 [OUT] Freeing pipeline ...
+11:09:57.313 === gst-launch exited, code=1 ===
+11:09:57.313 [RECONNECT] Stream dropped. Waiting 8 sec before retry. Reason: gst-launch exited after PLAY
+11:10:05.688 === GStreamer V10.9 launch ===
+11:10:05.688 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+11:10:05.688 PROXY_BYPASS: True
+11:10:05.688 VERBOSE_STATS: OFF
+11:10:05.688 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+11:10:05.688 
+11:10:05.772 [OUT] Use Windows high-resolution clock, precision: 1 ms
+11:10:05.772 [OUT] Setting pipeline to PAUSED ...
+11:10:05.974 [OUT] Pipeline is live and does not need PREROLL ...
+11:10:05.974 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+11:10:05.974 [OUT] Progress: (open) Opening Stream
+11:10:05.974 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+11:10:05.974 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+11:10:05.974 [OUT] Pipeline is PREROLLED ...
+11:10:05.974 [OUT] Prerolled, waiting for progress to finish...
+11:10:05.974 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+11:10:13.828 [WATCHDOG] RTSP connection stalled for 8 sec. Restarting gst-launch.
+11:10:13.859 [RECONNECT] Connection attempt failed. Retry #1 in 8 sec. Reason: connect watchdog
+11:10:13.859 === gst-launch exited ===
+11:10:13.859 [RECONNECT] Connection attempt failed. Retry #2 in 16 sec. Reason: gst-launch exited before PLAY
+11:10:13.859 === gst-launch exited ===
+11:10:13.859 [RECONNECT] Connection attempt failed. Retry #3 in 30 sec. Reason: gst-launch exited before PLAY
+11:10:44.219 === GStreamer V10.9 launch ===
+11:10:44.219 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+11:10:44.219 PROXY_BYPASS: True
+11:10:44.219 VERBOSE_STATS: OFF
+11:10:44.219 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+11:10:44.219 
+11:10:44.299 [OUT] Use Windows high-resolution clock, precision: 1 ms
+11:10:44.299 [OUT] Setting pipeline to PAUSED ...
+11:10:44.504 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+11:10:44.504 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+11:10:44.509 [OUT] Pipeline is live and does not need PREROLL ...
+11:10:44.510 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+11:10:44.510 [OUT] Progress: (open) Opening Stream
+11:10:44.510 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+11:10:44.510 [OUT] Pipeline is PREROLLED ...
+11:10:44.510 [OUT] Prerolled, waiting for progress to finish...
+11:10:52.371 [WATCHDOG] RTSP connection stalled for 8 sec. Restarting gst-launch.
+11:10:52.414 [RECONNECT] Connection attempt failed. Retry #4 in 30 sec. Reason: connect watchdog
+11:10:52.414 === gst-launch exited ===
+11:10:52.414 [RECONNECT] Connection attempt failed. Retry #5 in 30 sec. Reason: gst-launch exited before PLAY
+11:10:52.414 === gst-launch exited ===
+11:10:52.414 [RECONNECT] Connection attempt failed. Retry #6 in 30 sec. Reason: gst-launch exited before PLAY
+11:11:22.713 === GStreamer V10.9 launch ===
+11:11:22.713 EXE: C:\Program Files\gstreamer\1.0\mingw_x86_64\bin\gst-launch-1.0.exe
+11:11:22.713 PROXY_BYPASS: True
+11:11:22.713 VERBOSE_STATS: OFF
+11:11:22.713 PIPELINE: rtspsrc location=rtsp://192.168.50.25:8554/main.264 protocols=udp latency=300 do-rtcp=true do-rtsp-keep-alive=true udp-reconnect=1 timeout=5000000 do-retransmission=false ! application/x-rtp ! decodebin3 ! queue max-size-buffers=9 max-size-bytes=0 max-size-time=0 leaky=2 ! videoconvert ! autovideosink sync=false
+11:11:22.713 
+11:11:22.813 [OUT] Use Windows high-resolution clock, precision: 1 ms
+11:11:22.813 [OUT] Setting pipeline to PAUSED ...
+11:11:23.005 [OUT] Pipeline is live and does not need PREROLL ...
+11:11:23.005 [OUT] Got context from element 'autovideosink0': gst.d3d12.device.handle=context, device=(GstD3D12Device)"\(GstD3D12Device\)\ d3d12device0-1", adapter-index=(uint)0, adapter-luid=(gint64)48899, device-id=(uint)32085, vendor-id=(uint)32902, description=(string)"Intel\(R\)\ Arc\(TM\)\ Graphics";
+11:11:23.005 [OUT] Progress: (open) Opening Stream
+11:11:23.005 [ERR] 'C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll': 지정된 모듈을 찾을 수 없습니다.
+11:11:23.005 [ERR] Failed to load module: C:\Program Files\gstreamer\1.0\mingw_x86_64\lib\gio\modules\libgiolibproxy.dll
+11:11:23.005 [OUT] Progress: (connect) Connecting to rtsp://192.168.50.25:8554/main.264
+11:11:23.005 [OUT] Pipeline is PREROLLED ...
+11:11:23.005 [OUT] Prerolled, waiting for progress to finish...
+11:11:30.865 [WATCHDOG] RTSP connection stalled for 8 sec. Restarting gst-launch.
+11:11:30.894 [RECONNECT] Connection attempt failed. Retry #7 in 30 sec. Reason: connect watchdog
+11:11:30.894 === gst-launch exited ===
+11:11:30.894 [RECONNECT] Connection attempt failed. Retry #8 in 30 sec. Reason: gst-launch exited before PLAY
+11:11:30.894 === gst-launch exited ===
+11:11:30.894 [RECONNECT] Connection attempt failed. Retry #9 in 30 sec. Reason: gst-launch exited before PLAY
