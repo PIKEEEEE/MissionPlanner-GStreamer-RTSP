@@ -1623,3 +1623,184 @@ namespace GStreamerV109
         delegate void ElementProbeComplete(string result);
 
         void StartElementProbeAsync(
+
+            string gstLaunch,
+            ElementProbeComplete complete)
+        {
+            System.Threading.ThreadPool.QueueUserWorkItem(delegate
+            {
+                string result = ProbeElements(gstLaunch);
+
+                try
+                {
+                    if (cfg != null && !cfg.IsDisposed)
+                    {
+                        cfg.BeginInvoke((MethodInvoker)delegate
+                        {
+                            complete(result);
+                        });
+                    }
+                }
+                catch { }
+            });
+        }
+
+        string ProbeElements(string gstLaunch)
+        {
+            string dir;
+
+            try
+            {
+                dir = Path.GetDirectoryName(gstLaunch);
+            }
+            catch
+            {
+                return "경로 오류";
+            }
+
+            string inspect =
+                Path.Combine(dir, "gst-inspect-1.0.exe");
+
+            if (!File.Exists(inspect))
+                return "gst-inspect-1.0.exe 없음";
+
+            string[] elements = new string[]
+            {
+                "rtspsrc",
+                "rtph264depay",
+                "decodebin3",
+                "videoconvert",
+                "autovideosink",
+                "d3d11videosink",
+                "d3d12videosink",
+                "avdec_h264"
+            };
+
+            StringBuilder report = new StringBuilder();
+            report.AppendLine("선택 GStreamer 영상 요소 검사");
+            report.AppendLine();
+
+            foreach (string element in elements)
+            {
+                string so;
+                string se;
+
+                bool ok = RunProcessWithTimeout(
+                    inspect,
+                    element,
+                    dir,
+                    6000,
+                    out so,
+                    out se);
+
+                string all =
+                    (so + "\n" + se).ToLowerInvariant();
+
+                bool exists =
+                    ok &&
+                    all.IndexOf("no such element") < 0 &&
+                    all.IndexOf("no such element or plugin") < 0 &&
+                    !String.IsNullOrWhiteSpace(so);
+
+                report.AppendLine(
+                    element.PadRight(18) +
+                    (exists ? "OK" : "없음/실패"));
+            }
+
+            return report.ToString();
+        }
+
+        void RefreshDepayCapabilities()
+        {
+            // 저장된 검사 결과만 사용합니다.
+        }
+
+        void EnsureDepayCapabilities()
+        {
+            // 동기 검사 없음.
+        }
+
+        void ProbeGstSafe(
+            string gstLaunch,
+            out string version,
+            out bool waitSupported,
+            out bool requestSupported,
+            out string info)
+        {
+            version = "확인 실패";
+            waitSupported = false;
+            requestSupported = false;
+            info = "";
+
+            if (String.IsNullOrWhiteSpace(gstLaunch) ||
+                !File.Exists(gstLaunch))
+            {
+                info = "경로 없음";
+                return;
+            }
+
+            string dir;
+
+            try
+            {
+                dir = Path.GetDirectoryName(gstLaunch);
+            }
+            catch
+            {
+                info = "경로 오류";
+                return;
+            }
+
+            string outText;
+            string errText;
+
+            if (RunProcessWithTimeout(
+                    gstLaunch,
+                    "--version",
+                    dir,
+                    10000,
+                    out outText,
+                    out errText))
+            {
+                string all = outText + "\n" + errText;
+                string[] lines = all.Split(
+                    new char[] { '\r', '\n' },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+                string picked = "";
+
+                foreach (string line in lines)
+                {
+                    if (line.ToLowerInvariant().IndexOf("gstreamer") >= 0)
+                    {
+                        picked = line.Trim();
+                        break;
+                    }
+                }
+
+                if (String.IsNullOrWhiteSpace(picked) &&
+                    lines.Length > 0)
+                {
+                    picked = lines[0].Trim();
+                }
+
+                version =
+                    String.IsNullOrWhiteSpace(picked)
+                    ? "버전 문자열 없음"
+                    : picked;
+            }
+            else
+            {
+                version = "버전 검사 timeout/실패 (10초)";
+            }
+
+            try
+            {
+                string inspect =
+                    Path.Combine(dir, "gst-inspect-1.0.exe");
+
+                if (!File.Exists(inspect))
+                {
+                    info = "gst-inspect 없음";
+                    return;
+                }
