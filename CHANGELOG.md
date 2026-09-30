@@ -1,5 +1,14 @@
 # Changelog
 
+## V10.9.1
+- RTSP URL 및 플러그인 설정을 `Settings.Instance.Save()`로 즉시 `config.xml`에 기록
+- Mission Planner 재시작 후 이전 RTSP 주소로 돌아가는 문제 수정
+- 저장 실패 시 오류 메시지 표시
+- 저장 실패 시 적용/재시작 중단
+- 정상 종료 시 설정 flush를 안전망으로 한 번 더 수행
+- V10.9 Smart Reconnect 동작은 그대로 유지
+
+
 ## V10.9
 - Smart reconnect/backoff
 - verbose RTP stats 제거
