@@ -6,10 +6,10 @@ Mission Planner에서 RTSP 영상을 안정적으로 표시하기 위해 개발�
 
 ## 현재 권장 버전
 
-**V10.9 — GStreamer Smart Reconnect**
+**V10.9.1 — GStreamer Smart Reconnect (설정 영구 저장 수정)**
 
-- 소스: `src/GStreamerSmartReconnectV10_9.cs`
-- 배포 ZIP: `releases/MissionPlanner_GStreamer_SmartReconnect_V10_9.zip`
+- 소스: `src/GStreamerSmartReconnectV10_9_1.cs`
+- 배포 ZIP: `releases/MissionPlanner_GStreamer_SmartReconnect_V10_9_1.zip`
 
 ## 검증된 장비 구성
 
@@ -27,7 +27,7 @@ SIYI HDMI Input to Ethernet Output Converter
    ↓
 Ethernet / RTSP
    ↓
-Mission Planner + V10.9 Plugin
+Mission Planner + V10.9.1 Plugin
 ```
 
 ## 현재 권장 설정
@@ -124,7 +124,7 @@ no_proxy=*
 
 ## 자동 재연결
 
-V10.9는 다음 흐름을 사용합니다.
+V10.9.1은 V10.9의 재연결 흐름을 유지하면서 설정값을 `config.xml`에 즉시 저장합니다.
 
 ```text
 PLAY 성공
@@ -158,7 +158,7 @@ PLAY 성공 시 reset
 
 - 영상 정상 유지
 - HDMI/영상 중단 후 복구
-- V10.9 자동 재연결 정상
+- V10.9.1 자동 재연결 정상
 
 따라서 동일 증상에서는 HDMI splitter, EDID, Hot-Plug, 케이블 및 전원 안정성도 함께 확인해야 합니다.
 
@@ -172,7 +172,7 @@ PLAY 성공 시 reset
 
 ## 배포물 / 과거 버전
 
-- `releases/MissionPlanner_GStreamer_SmartReconnect_V10_9.zip` — 현재 권장 배포 ZIP
+- `releases/MissionPlanner_GStreamer_SmartReconnect_V10_9_1.zip` — 현재 권장 배포 ZIP
 - `docs/HISTORICAL_ARTIFACTS.md` — V2~V10.9 개발 산출물 목록
 - 변경 배경은 `CHANGELOG.md`와 `docs/DEVELOPMENT_HISTORY.md`에 정리
 
