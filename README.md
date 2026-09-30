@@ -9,7 +9,6 @@ Mission Planner에서 RTSP 영상을 안정적으로 표시하기 위해 개발�
 **V10.9.1 — GStreamer Smart Reconnect (설정 영구 저장 수정)**
 
 - 소스: `src/GStreamerSmartReconnectV10_9_1.cs`
-- 배포 ZIP: `releases/MissionPlanner_GStreamer_SmartReconnect_V10_9_1.zip`
 
 ## 검증된 장비 구성
 
@@ -172,7 +171,7 @@ PLAY 성공 시 reset
 
 ## 배포물 / 과거 버전
 
-- `releases/MissionPlanner_GStreamer_SmartReconnect_V10_9_1.zip` — 현재 권장 배포 ZIP
+- `src/GStreamerSmartReconnectV10_9_1.cs` — 현재 권장 플러그인 소스
 - `docs/HISTORICAL_ARTIFACTS.md` — V2~V10.9 개발 산출물 목록
 - 변경 배경은 `CHANGELOG.md`와 `docs/DEVELOPMENT_HISTORY.md`에 정리
 
